@@ -30,30 +30,35 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+
+                <div class="col-lg-6 col-md-6">
                     <div class="footer-widget widget-2">
-                        <h3 class="widget-header">Company Info</h3>
-                        <ul class="footer-list">
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="service.html">Resource Center</a></li>
-                            <li><a href="team.html">Careers</a></li>
-                            <li><a href="contact.html">Instructor</a></li>
-                            <li><a href="contact.html">Become A Teacher</a></li>
-                        </ul>
+                        <h3 class="widget-header">Course Info</h3>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <ul class="footer-list">
+                                    <li><a href="about.html">About Us</a></li>
+                                    <li><a href="service.html">Resource Center</a></li>
+                                    <li><a href="team.html">Careers</a></li>
+                                    <li><a href="contact.html">Instructor</a></li>
+                                    <li><a href="contact.html">Become A Teacher</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6">
+                                <ul class="footer-list">
+                                    <li><a href="about.html">About Us</a></li>
+                                    <li><a href="service.html">Resource Center</a></li>
+                                    <li><a href="team.html">Careers</a></li>
+                                    <li><a href="contact.html">Instructor</a></li>
+                                    <li><a href="contact.html">Become A Teacher</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-widget widget-2">
-                        <h3 class="widget-header">Useful Links</h3>
-                        <ul class="footer-list">
-                            <li><a href="contact.html">All Courses</a></li>
-                            <li><a href="contact.html">Digital Marketing</a></li>
-                            <li><a href="contact.html">Design & Branding</a></li>
-                            <li><a href="contact.html">Storytelling & Voice Over</a></li>
-                            <li><a href="contact.html">News & Blogs</a></li>
-                        </ul>
-                    </div>
-                </div>
+
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-widget">
                         <h3 class="widget-header">Recent Post</h3>
