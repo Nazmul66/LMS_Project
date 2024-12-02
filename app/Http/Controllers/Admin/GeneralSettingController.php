@@ -63,7 +63,7 @@ class GeneralSettingController extends Controller
                     @unlink($setting->favicon);
                 }
 
-                $imageName          = $request->slug . rand(1, 99999999) . '.' . $images->getClientOriginalExtension();
+                $imageName          = rand(1, 99999999) . '.' . $images->getClientOriginalExtension();
                 $imagePath          = 'adminpanel/images/settings/';
                 $images->move($imagePath, $imageName);
     
@@ -77,7 +77,7 @@ class GeneralSettingController extends Controller
                     @unlink($setting->logo);
                 }
 
-                $imageName          = $request->slug . rand(1, 99999999) . '.' . $logo->getClientOriginalExtension();
+                $imageName          =  rand(1, 99999999) . '.' . $logo->getClientOriginalExtension();
                 $imagePath          = 'adminpanel/images/settings/';
                 $logo->move($imagePath, $imageName);
     

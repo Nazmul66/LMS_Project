@@ -14,7 +14,6 @@
                     </a>
                 </li>
                 
-
                 <li>
                     <a href="{{ route('admin.contact.index') }}" class="waves-effect">
                         <i class="bx bxs-user-detail"></i>
@@ -22,7 +21,12 @@
                     </a>
                 </li>
 
-
+                <li class="@yield('course')">
+                    <a href="{{ route('admin.course.index') }}" class="waves-effect">
+                        <i class="bx bx bx-dollar-circle"></i>
+                        <span key="t-course">Course</span>
+                    </a>
+                </li>
 
                 <li>
                     <a href="{{ route('admin.setting.general.setting') }}" class="waves-effect">
