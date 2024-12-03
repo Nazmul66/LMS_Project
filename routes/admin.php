@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GeneralSettingController;
-// use App\Http\Controllers\Admin\PricingController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\CourseModuleController;
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
@@ -20,7 +20,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
         Route::post('/toggle-status', [ContactController::class, 'toggleStatus'])->name('toggleStatus');
     });
 
-    // Pricing
+    // Course
     Route::group(['prefix' => 'course', 'as' => 'course.'], function () {
         Route::get('/', [CourseController::class, 'index'])->name('index');
         Route::get('/create', [CourseController::class, 'create'])->name('create');
@@ -29,6 +29,17 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
         Route::post('/update/{id}', [CourseController::class, 'update'])->name('update');
         Route::get('/delete/{id}', [CourseController::class, 'delete'])->name('delete');
         Route::get('/view/{id}', [CourseController::class, 'view'])->name('view');
+    });
+
+    // Course Module
+    Route::group(['prefix' => 'course_module', 'as' => 'course_module.'], function () {
+        Route::get('/{course_id}', [CourseModuleController::class, 'index'])->name('index');
+        Route::get('/{course_id}/create', [CourseModuleController::class, 'create'])->name('create');
+        Route::post('/store', [CourseModuleController::class, 'store'])->name('store');
+        Route::get('/{course_id}/edit/{id}', [CourseModuleController::class, 'edit'])->name('edit');
+        Route::post('/update/{id}', [CourseModuleController::class, 'update'])->name('update');
+        Route::get('/delete/{id}', [CourseModuleController::class, 'delete'])->name('delete');
+        Route::get('/view/{id}', [CourseModuleController::class, 'view'])->name('view');
     });
 
     // setting

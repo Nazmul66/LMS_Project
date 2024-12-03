@@ -192,21 +192,19 @@ class CourseController extends Controller
     public function delete($id)
     {
         $course = Course::findOrFail($id);
+
+        if( !empty($course->image) && file_exists($course->image)) {
+            @unlink($course->image);
+        }
+
+        if( !empty($course->instructor_image) && file_exists($course->instructor_image)) {
+            @unlink($course->instructor_image);
+        }
+
         $course->delete();
 
         Toastr::success('Course delete successfully', 'Success', ["positionClass" => "toast-top-right"]);
         return redirect()->back();
-    }
-
-    public function view($id)
-    {
-        // if (is_null($this->user) || !$this->user->can('admin.plan.view')) {
-        //     abort(403, 'Sorry !! You are Unauthorized.');
-        // }
-
-        $data['title'] = "View Course";
-        $data['course'] = Course::find($id);
-        return view('admin.pages.course.view', $data);
     }
 
 }
