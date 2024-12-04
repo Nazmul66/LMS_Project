@@ -13,7 +13,17 @@
                 <div class="top-bar-right">
                     <div class="register-box">
                         <div class="icon"><i class="fa-regular fa-user"></i></div>
-                        <a href="#">Login / Register</a>
+
+                        @if ( Auth::check() )
+                            <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                                <button type="submit" style="color: #FFF;">
+                                    {{ __('Log Out') }}
+                                </button>
+                            </form>
+                        @else
+                            <a href="{{ route('login') }}">Login </a>
+                        @endif
                     </div>
                     <div class="top-social-wrap">
                         <span>Follow Us</span>

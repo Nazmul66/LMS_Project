@@ -2382,7 +2382,7 @@ START: Header CSS
 }
 
 .header .top-bar .top-bar-inner .top-bar-right .register-box a:hover {
-    color: var(--ed-color-theme-primary);
+    color: #FFF;
 }
 
 .header .top-bar .top-bar-inner .top-bar-right .top-social-wrap {

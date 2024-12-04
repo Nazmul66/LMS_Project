@@ -30,9 +30,9 @@
                 <a href="{{ url('/') }}" style="font-size: 22px;"><i class='bx bx-home'></i></a>
             </button>
 
-            <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect">
+            {{-- <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect">
                 <a href="{{ url('/admin/cc') }}" style="font-size: 22px;"> <i class='bx bx-refresh'></i> </a>
-            </button>
+            </button> --}}
 
             <!-- App Search-->
             {{-- <form class="app-search d-none d-lg-block">
@@ -421,14 +421,30 @@
                             class="bx bx-lock-open font-size-16 align-middle me-1"></i> <span
                             key="t-lock-screen">@lang('translation.Lock_screen')</span></a> --}}
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="javascript:void();"
+
+                    <div class="dropdown-item text-danger">
+
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            
+                             <button type="submit" style="border: none;
+                             background: transparent; padding: 0;">
+                                <i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> 
+                                <span key="t-logout">Logout</span>
+                            </button>    
+                        </form>
+                    </div>
+
+                    {{-- <a class="dropdown-item text-danger" href="javascript:void();"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
                             class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span
-                            key="t-logout">@lang('translation.Logout')</span></a>
+                            key="t-logout">Logout</span>
+                    </a>
+
                     <form id="logout-form" action="" method="POST"
                         style="display: none;">
-                        {{-- @csrf --}}
-                    </form>
+                        @csrf
+                    </form> --}}
                 </div>
             </div>
             <div class="dropdown d-inline-block">

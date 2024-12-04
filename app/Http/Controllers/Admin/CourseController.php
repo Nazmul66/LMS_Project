@@ -53,7 +53,7 @@ class CourseController extends Controller
         try {
             $course                   = new Course();
 
-            $course->user_id          = 0;
+            $course->user_id          = Auth::user()->id;
             $course->title            = $request->title;
             $course->name             = $request->name;
             $course->designation      = $request->designation;
@@ -134,7 +134,7 @@ class CourseController extends Controller
         try {
             $course                   = Course::findOrFail($id);
 
-            $course->user_id          = 0;
+            $course->user_id          = Auth::user()->id;
             $course->title            = $request->title;
             $course->name             = $request->name;
             $course->designation      = $request->designation;
