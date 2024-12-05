@@ -15,11 +15,11 @@ use App\Http\Controllers\Frontend\FrontendController;
 
 
 Route::controller(FrontendController::class)->group(function () {
-    Route::get('/', 'home')->name('home');
-    Route::get('/contact', 'contact')->name('contact');
-    Route::get('/cart', 'cart')->name('cart');
-    Route::get('/checkout', 'checkout')->name('checkout');
-    Route::get('/course-details', 'course_details')->name('course-details');
+        Route::get('/', 'home')->name('home');
+        Route::get('/contact', 'contact')->name('contact');
+        Route::get('/cart', 'cart')->name('cart');
+        Route::get('/checkout', 'checkout')->name('checkout');
+        Route::get('/course-details', 'course_details')->name('course-details');
 });
 
 

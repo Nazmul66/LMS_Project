@@ -42,16 +42,16 @@
                     </a>
                 </li>
 
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
                 <li>
-                         <button type="submit" style="border: none;
-                         background: transparent; padding: 0;">
-                            <i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> 
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                            <button type="submit" style="border: none;
+                            background: transparent;">
+                            <i class="bx bx-power-off align-middle me-1 text-danger"></i> 
                             <span key="t-logout">Logout</span>
                         </button>    
-                    </li>
-                </form>
+                    </form>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->

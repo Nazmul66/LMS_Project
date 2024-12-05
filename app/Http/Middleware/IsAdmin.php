@@ -17,12 +17,15 @@ class IsAdmin
     public function handle(Request $request, Closure $next): Response
     {
         if( !Auth::check() ){
-            // Log::info('Admin not authenticated.');
             return redirect('/login');
         }
         else{
-            // Log::info('Admin authenticated.');
-            return $next($request);
+            if( Auth::user()->role == 1 ){
+                return $next($request);
+            }
+            else{
+                return redirect('/login');
+            }
         }
     }
 }

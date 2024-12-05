@@ -299,3 +299,26 @@ label:not(.form-check-label):not(.custom-file-label) {
     background-color: #b3d7ff;
     border-color: #b3d7ff;
 }
+
+
+body[data-sidebar=dark] #sidebar-menu ul li button {
+    color: #a6b0cf;
+}
+#sidebar-menu ul li button {
+    display: block;
+    padding: .625rem 1.5rem;
+    color: #545a6d;
+    position: relative;
+    font-size: 13px;
+    transition: all .4s;
+}
+#sidebar-menu ul li button i {
+    display: inline-block;
+    min-width: 1.75rem;
+    padding-bottom: .125em;
+    font-size: 1.25rem;
+    line-height: 1.40625rem;
+    vertical-align: middle;
+    color: #7f8387;
+    transition: all .4s;
+}

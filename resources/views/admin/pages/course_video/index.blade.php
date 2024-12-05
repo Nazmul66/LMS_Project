@@ -40,7 +40,7 @@
                         @foreach ($course_videos as $key => $item)
                         <tr>
                             <th scope="row">{{ $key + 1 }}</th>
-                            <td>{{ $item->course_module_id }}</td>
+                            <td>{{ $item->course_module_name }}</td>
                             <td>{{ $item->video_title }}</td>
                             <td>{{ $item->video_timer }}</td>
                             <td>
@@ -91,7 +91,7 @@
                                         <div class="modal-body">
                                             <div class="message_content">
                                                 <label>Course Module Name : </label>
-                                                <span class="text-dark">{{ $item->course_module_id }}</span>
+                                                <span class="text-dark">{{ $item->course_module_name }}</span>
                                             </div>
 
                                             <div class="message_content">

@@ -66,7 +66,6 @@
                 <div class="contact-content">
                     <div class="contact-top">
                         <h3 class="title">Office Information</h3>
-                        <p>Completely recapitalize 24/7 communities via standards compliant metrics whereas.</p>
                     </div>
                     <div class="contact-list">
                         <div class="list-item">
@@ -75,8 +74,8 @@
                             </div>
                             <div class="content">
                                 <h4 class="title">Phone Number & Email</h4>
-                                <span><a href="tel:+65485965789">(+65) - 48596 - 5789</a></span>
-                                <span><a href="mailto:hello@edcare.com">hello@edcare.com</a></span>
+                                <span><a href="tel:+65485965789">{{ getSetting()->phone ? getSetting()->phone : getSetting()->phone_optional }}</a></span>
+                                <span><a href="mailto:{{ getSetting()->email ? getSetting()->email : getSetting()->email_optional }}">{{ getSetting()->email ? getSetting()->email : getSetting()->email_optional }}</a></span>
                             </div>
                         </div>
                         <div class="list-item">
@@ -85,7 +84,7 @@
                             </div>
                             <div class="content">
                                 <h4 class="title">Our Office Address</h4>
-                                <p>2690 Hilton Street Victoria Road, <br>New York, Canada</p>
+                                <p>{{ getSetting()->address }}</p>
                             </div>
                         </div>
                         <div class="list-item">
@@ -94,8 +93,7 @@
                             </div>
                             <div class="content">
                                 <h4 class="title">Official Work Time</h4>
-                                <span>Monday - Friday: 09:00 - 20:00</span>
-                                <span>Sunday & Saturday: 10:30 - 22:00</span>
+                                <span>{{ getSetting()->office_time_open }}</span>
                             </div>
                         </div>
                     </div>

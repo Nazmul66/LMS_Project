@@ -15,7 +15,10 @@ class CourseModuleController extends Controller
     public function index(string $course_id)
     {
         $data['title']            = 'Manage Course Module List';
-        $data['course_modules']   = CourseModule::orderBy('id', 'desc')->get();
+        $data['course_modules']   = CourseModule::
+                                    where('course_id', $course_id)
+                                    ->orderBy('id', 'desc')
+                                    ->get();
         $data['course_id']        = $course_id;
         return view('admin.pages.course_module.index', $data);
     }

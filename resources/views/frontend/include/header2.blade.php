@@ -5,9 +5,15 @@
             <div class="top-bar-inner">
                 <div class="top-bar-left">
                     <ul class="top-bar-list">
-                        <li><i class='bx bx-phone-call' style="font-size: 24px;"></i><a href="tel:256214203215">256 214 203 215</a></li>
-                        <li><i class='bx bx-map' style="font-size: 24px;"></i><span>258 Helano Street, New York</span></li>
-                        <li><i class='bx bx-time-five' style="font-size: 24px;"></i><span>Mon - Sat: 8:00 - 15:00</span></li>
+                        <li>
+                            <i class='bx bx-phone-call' style="font-size: 24px;"></i>
+                            <a href="tel:{{ getSetting()->phone ? getSetting()->phone : getSetting()->phone_optional }}">
+                                {{ getSetting()->phone ? getSetting()->phone : getSetting()->phone_optional }}
+                            </a>
+                        </li>
+                        <li><i class='bx bx-map' style="font-size: 24px;"></i><span>{{ getSetting()->address ?? "" }}</span></li>
+                        <li><i class='bx bx-time-five' style="font-size: 24px;"></i><span>
+                            {{ getSetting()->office_time_open ?? "" }}</span></li>
                     </ul>
                 </div>
                 <div class="top-bar-right">
@@ -28,11 +34,37 @@
                     <div class="top-social-wrap">
                         <span>Follow Us</span>
                         <ul class="social-list">
-                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fab fa-behance"></i></a></li>
-                            <li><a href="#"><i class="fab fa-skype"></i></a></li>
-                            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            @if ( !empty(getSetting()->facebook_url) )
+                                <li>
+                                    <a href="{{ asset(getSetting()->facebook_url) }}">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                            @endif
+
+                            @if ( !empty(getSetting()->instagram_url) )
+                                <li>
+                                    <a href="{{ asset(getSetting()->instagram_url) }}">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </li>
+                            @endif
+
+                            @if ( !empty(getSetting()->twitter_url) )
+                                <li>
+                                    <a href="{{ asset(getSetting()->twitter_url) }}">
+                                        <i class="fa-brands fa-x-twitter"></i>
+                                    </a>
+                                </li>
+                            @endif
+
+                            @if ( !empty(getSetting()->linkedin_url) )
+                                <li>
+                                    <a href="{{ asset(getSetting()->linkedin_url) }}">
+                                        <i class="fa-brands fa-linkedin-in"></i>
+                                    </a>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -45,7 +77,7 @@
             <div class="primary-header-inner">
                 <div class="header-logo d-lg-block">
                     <a href="{{ route('home') }}">
-                        <img src="{{ asset('frontend/assets/img/logo/logo-1.png') }}" alt="Logo">
+                        <img src="{{ asset(getSetting()->logo) }}" alt="Logo">
                     </a>
                 </div>
 
@@ -155,16 +187,21 @@
     <div class="side-menu-content">
 
         <div class="side-menu-head">
-            <a href="{{ route('home') }}"><img src="{{ asset('frontend/assets/img/logo/logo-1.png') }}" alt="logo"></a>
+            <a href="{{ route('home') }}"><img src="{{ asset(getSetting()->logo) }}" alt="logo"></a>
             <button class="mobile-side-menu-close"><i class='bx bx-x' style="font-size: 24px;"></i></button>
         </div>
 
         <div class="side-menu-wrap"></div>
 
         <ul class="side-menu-list">
-            <li><i class="fa-light fa-location-dot"></i>Address : <span>Amsterdam, 109-74</span></li>
-            <li><i class="fa-light fa-phone"></i>Phone : <a href="tel:+01569896654">+01 569 896 654</a></li>
-            <li><i class="fa-light fa-envelope"></i>Email : <a href="mailto:info@example.com">info@example.com</a></li>
+            <li><i class="fa-light fa-location-dot"></i>Address : <span>{{ getSetting()->address }}</span></li>
+
+            <li>
+                <i class="fa-light fa-phone"></i>Phone : <a href="tel:{{ getSetting()->phone ? getSetting()->phone : getSetting()->phone_optional }}">{{ getSetting()->phone ? getSetting()->phone : getSetting()->phone_optional }}</a>
+            </li>
+
+            <li>
+                <i class="fa-light fa-envelope"></i>Email : <a href="mailto:{{ getSetting()->email ? getSetting()->email : getSetting()->email_optional }}">{{ getSetting()->email ? getSetting()->email : getSetting()->email_optional }}</a></li>
         </ul>
     </div>
 </div>

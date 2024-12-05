@@ -4,7 +4,7 @@
     {{ $title }}
 @endsection
 
-@section('course_video', 'mm-active')
+@section('course', 'mm-active')
 
 @push('css')
 @endpush

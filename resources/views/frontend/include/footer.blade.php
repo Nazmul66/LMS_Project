@@ -17,16 +17,45 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-widget">
                         <h3 class="widget-header">Get in touch!</h3>
-                        <p class="mb-30">Fusce varius, dolor tempor interdum tristiquei bibendum.</p>
+                        <p class="mb-30">{{ getSetting()->address ?? "" }}</p>
                         <div class="footer-contact">
-                            <span class="number"><i class='bx bx-phone-call' style="font-size: 24px;"></i><a href="tel:702123-1478">(702) 123-1478</a></span>
+                            <span class="number">
+                                <i class='bx bx-phone-call' style="font-size: 24px;"></i><a href="tel:{{ getSetting()->phone ? getSetting()->phone : getSetting()->phone_optional }}">{{ getSetting()->phone ? getSetting()->phone : getSetting()->phone_optional }}</a>
+                            </span>
                             <a href="mailto:info@company.com" class="mail">info@company.com</a>
                         </div>
                         <ul class="footer-social">
-                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                            @if ( !empty(getSetting()->facebook_url) )
+                                <li>
+                                    <a href="{{ asset(getSetting()->facebook_url) }}">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                            @endif
+
+                            @if ( !empty(getSetting()->instagram_url) )
+                                <li>
+                                    <a href="{{ asset(getSetting()->instagram_url) }}">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </li>
+                            @endif
+
+                            @if ( !empty(getSetting()->twitter_url) )
+                                <li>
+                                    <a href="{{ asset(getSetting()->twitter_url) }}">
+                                        <i class="fa-brands fa-x-twitter"></i>
+                                    </a>
+                                </li>
+                            @endif
+
+                            @if ( !empty(getSetting()->linkedin_url) )
+                                <li>
+                                    <a href="{{ asset(getSetting()->linkedin_url) }}">
+                                        <i class="fa-brands fa-linkedin-in"></i>
+                                    </a>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -88,7 +117,7 @@
     <div class="copyright-area">
         <div class="container">
             <div class="copyright-content">
-                <p>Copyright © 2024 EdCare. All Rights Reserved.</p>
+                <p>Copyright © <u><a href="{{ url('/') }}">{{ getSetting()->copyright }}</a></u>. All Rights Reserved.</p>
             </div>
         </div>
     </div>
