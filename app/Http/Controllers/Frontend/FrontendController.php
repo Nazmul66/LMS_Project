@@ -79,7 +79,7 @@ class FrontendController extends Controller
     public function cart_delete(string $id)
     {
     //    dd($id);
-       $cart = Cart::where('course_id', $id)->first();
+       $cart = Cart::where('course_id', $id)->where('order_id', NULL)->first();
 
        $cart->delete();
        return redirect()->back();
@@ -134,19 +134,31 @@ class FrontendController extends Controller
         $order->save();
 
 
-        $user          = User::findOrFail(Auth::user()->id);
-        $user->name    = $order->name;
+        $user              = User::findOrFail(Auth::user()->id);
+        $user->name        = $order->name;
         $user->update();
 
+        $address = Address::where('user_id', Auth::user()->id)->first();
 
-        $address = new Address();
+        if (!empty($address)) {
+            // Update the existing address
+            $address->phone    = $order->phone;
+            $address->address  = $order->address;
+            $address->city     = $order->city;
+            $address->zip_code = $order->zip_code;
+            $address->save();
 
-        $address->user_id       = Auth::user()->id;
-        $address->phone         = $order->phone;
-        $address->address       = $order->address;
-        $address->city          = $order->city;
-        $address->zip_code      = $order->zip_code;
-        $address->save();
+        } else {
+            // Create a new address if none exists
+            $address = new Address();
+
+            $address->user_id   = Auth::user()->id;
+            $address->phone     = $order->phone;
+            $address->address   = $order->address;
+            $address->city      = $order->city;
+            $address->zip_code  = $order->zip_code;
+            $address->save();
+        }
 
 
         $carts = Cart::where('user_id', Auth::user()->id)->where('order_id', NULL)->get();
