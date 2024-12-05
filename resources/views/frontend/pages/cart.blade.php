@@ -33,52 +33,43 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="product-remove"><button><i class='bx bx-x' style="font-size: 24px;"></i></button></td>
-                                <td class="product-thumbnail">
-                                    <a href="shop-details.html">
-                                        <img src="{{ asset('frontend/assets/img/shop/shop-1.png') }}" alt="img">
-                                    </a>
-                                    <div class="product-thumbnail">
-                                        <h4 class="title">Power Guard Fortress</h4>
-                                    </div>
-                                </td>
-                                <td class="product-price"><span class="amount">$550.00</span></td>
-                                <td class="product-quantity">
-                                    <div class="quantity__group">
-                                        <input type="number" class="input-text qty text" name="quantity" value="1" min="1" max="100" step="1" autocomplete="off">
-                                    </div>
-                                </td>
-                                <td class="product-subtotal"><span class="amount">$230.50</span></td>
-                            </tr>
-                            <tr>
-                                <td class="product-remove"><button><i class='bx bx-x' style="font-size: 24px;"></i></button></td>
-                                <td class="product-thumbnail">
-                                    <a href="shop-details.html">
-                                        <img src="{{ asset('frontend/assets/img/shop/shop-2.png') }}" alt="img">
-                                    </a>
-                                    <div class="product-thumbnail">
-                                        <h4 class="title">Quantum Sound Enigma</h4>
-                                    </div>
-                                </td>
-                                <td class="product-price"><span class="amount">$550.00</span></td>
-                                <td class="product-quantity">
-                                    <div class="quantity__group">
-                                        <input type="number" class="input-text qty text" name="quantity" value="1" min="1" max="100" step="1" autocomplete="off">
-                                    </div>
-                                </td>
-                                <td class="product-subtotal"><span class="amount">$230.50</span></td>
-                            </tr>
+
+                            @foreach ($carts as $row)
+                                <tr>
+                                    <td class="product-remove">
+                                        <a href="{{ route('cart.delete', $row->id) }}">
+                                            <i class='bx bx-x' style="font-size: 24px;"></i>
+                                        </a>
+                                    </td>
+                                    <td class="product-thumbnail">
+                                        <a href="{{ route('course-details', $row->id) }}">
+                                            <img src="{{ asset($row->image) }}" alt="img">
+                                        </a>
+                                        <div class="product-thumbnail">
+                                            <h4 class="title">{{ $row->title }}</h4>
+                                        </div>
+                                    </td>
+                                    <td class="product-price"><span class="amount">${{ number_format($row->cart_price, 2) }}</span></td>
+                                    <td class="product-quantity">
+                                        <div class="quantity__group">
+                                            <input type="number" class="input-text qty text" name="quantity" readonly value="{{ $row->cart_qty }}" min="1" max="100" step="1" autocomplete="off">
+                                        </div>
+                                    </td>
+                                    <td class="product-subtotal"><span class="amount">${{ number_format($row->cart_price * $row->cart_qty, 2) }}</span></td>
+                                </tr>
+                            @endforeach
+
+                            
                         </tbody>
                     </table>
                 </div>
-                <div class="cart-btn-wrap">
+                {{-- <div class="cart-btn-wrap">
                     <div class="left-item">
                         <input type="text" class="form-control" placeholder="Coupon Code">
                         <button class="ed-primary-btn">Apply Coupon</button>
                     </div>
                     <button class="ed-primary-btn update-btn">Update Cart</button>
-                </div>
+                </div> --}}
             </div>
             <div class="col-lg-4">
             <div class="checkout-wrapper">
@@ -87,9 +78,10 @@
                 </div>
                 <div class="checkout-top checkout-item">
                     <h4 class="title">Subtotal</h4>
-                    <span class="price">$1100.00</span>
+                    <span class="price">${{ number_format(getTotalCartAmount(), 2) }}</span>
                 </div>
-                <div class="checkout-shipping checkout-item">
+                
+                {{-- <div class="checkout-shipping checkout-item">
                     <h4 class="title">Shipping</h4>
                     <div class="shipping-right">
                         <div class="checkout-option-wrapper">
@@ -109,14 +101,15 @@
                         <p>Shipping options will be updated <br> during checkout</p>
                         <span>Calculate Shipping</span>
                     </div>
-                </div>
+                </div> --}}
+
                 <div class="checkout-total checkout-item">
                     <h4 class="title">Total</h4>
-                    <span>$724</span>
+                    <span>${{ number_format(getTotalCartAmount(), 2) }}</span>
                 </div>
             </div>
             <div class="checkout-proceed">
-                <a href="checkout.html" class="ed-primary-btn checkout-btn">Proceed to Checkout</a>
+                <a href="{{ route('checkout') }}" class="ed-primary-btn checkout-btn">Proceed to Checkout</a>
             </div>
             </div>
         </div>

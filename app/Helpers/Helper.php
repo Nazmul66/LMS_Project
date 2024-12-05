@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Cart;
 use App\Models\Setting;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -10,6 +11,34 @@ use Intervention\Image\Facades\Image;
 if (!function_exists('getSetting')) {
     function getSetting(){
         return Setting::first();
+    }
+}
+
+
+if (!function_exists('getTotalCart')) {
+    function getTotalCart(){
+        $carts = Cart::leftJoin('courses', 'courses.id', 'carts.course_id')
+                ->select('courses.*', 'carts.price as cart_price', 'carts.qty as cart_qty')
+                ->where('carts.user_id', Auth::user()->id)->where('carts.order_id', NULL)
+                ->get()->count();
+
+        return $carts;
+    }
+}
+
+if (!function_exists('getTotalCartAmount')) {
+    function getTotalCartAmount(){
+        $carts = Cart::leftJoin('courses', 'courses.id', 'carts.course_id')
+                ->select('courses.*', 'carts.price as cart_price', 'carts.qty as cart_qty')
+                ->where('carts.user_id', Auth::user()->id)->where('carts.order_id', NULL)
+                ->get();
+
+        $total_amount = 0;
+        foreach( $carts as $item ){
+            $total_amount += $item->cart_price * $item->cart_qty;
+        }
+
+        return $total_amount;
     }
 }
 

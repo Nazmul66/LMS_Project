@@ -144,7 +144,7 @@
 
                             <div class="header-right-icon shop-btn">
                                 <a href="{{ route('cart') }}"><i class='bx bx-cart-alt' style="font-size: 24px;"></i></a>
-                                <span class="number">0</span>
+                                <span class="number">{{ getTotalCart() }}</span>
                             </div>
 
                             {{-- <a href="contact.html" class="ed-primary-btn header-btn">Get a quote <i class="fa-sharp fa-regular fa-arrow-right"></i></a> --}}

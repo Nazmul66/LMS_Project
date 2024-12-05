@@ -8,6 +8,13 @@
     
 @endpush
 
+@php
+    $user = App\Models\User::leftJoin('addresses', 'addresses.user_id', 'users.id')
+           ->select('addresses.*', 'users.*')
+           ->where('users.id', Auth::user()->id)
+           ->first();
+@endphp
+
 @section('body-content')
 
 <!-- header-area-start -->
@@ -50,220 +57,220 @@
             </div>
         </div> --}}
         
-        <div class="row">
-            <div class="col-lg-6 col-md-12">
-                <div class="checkout-left">
-                    <h3 class="form-header">Billing Details</h3>
-                    <form action="mail.php">
+        <form action="{{ route('order') }}" method="POST">
+            @csrf
+
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="checkout-left">
+                        <h3 class="form-header">Billing Details</h3>
+
                         <div class="checkout-form-wrap">
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <div class="form-item name">
+                                        <h4 class="form-title">Full Name*</h4>
+                                        <input type="text" id="name" name="name" class="form-control" value="{{ Auth::user()->name }}">
+                                    </div>
+                                </div>
+
+                                {{-- <div class="col-md-6">
+                                    <div class="form-item">
+                                        <h4 class="form-title">Last Name*</h4>
+                                        <input type="text" id="last_name" name="last_name" class="form-control">
+                                    </div>
+                                </div> --}}
+                            </div>
+
                             <div class="form-group row">
                                 <div class="col-md-12">
                                     <div class="form-item">
                                         <h4 class="form-title">Email Address*</h4>
-                                        <input type="email" id="email" name="email" class="form-control">
+                                        <input type="email" readonly id="email" value="{{ Auth::user()->email }}" name="email" class="form-control">
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <div class="form-item name">
-                                        <h4 class="form-title">First Name*</h4>
-                                        <input type="text" id="fullname-2" name="fullname-2" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-item">
-                                        <h4 class="form-title">Last Name*</h4>
-                                        <input type="text" id="lastname" name="lastname" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-12">
-                                    <div class="form-item">
-                                        <h4 class="form-title">Company Name (Optional)*</h4>
-                                        <input type="text" id="company" name="company" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
+
+
+                            {{-- <div class="form-group row">
                                 <div class="col-md-12">
                                     <div class="form-item">
                                         <h4 class="form-title">Country / Region*</h4>
                                         <input type="text" id="country" name="country" class="form-control" placeholder="United States (US)">
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
+
                             <div class="form-group row">
                                 <div class="col-md-12">
                                     <div class="form-item ">
                                         <h4 class="form-title">Street Address*</h4>
-                                        <input type="text" id="street" name="street" class="form-control street-control" placeholder="House number and street number">
-                                        <input type="text" id="street-2" name="street-2" class="form-control street-control-2" placeholder="Apartment, suite, unit, etc. (optional)">
+                                        <input type="text" id="address" name="address" class="form-control street-control" value="{{ old('address',$user->address ) }}" placeholder="House number and street number">
                                     </div>
                                 </div>
                             </div>
+
                             <div class="form-group row">
                                 <div class="col-md-12">
                                     <div class="form-item">
                                         <h4 class="form-title">Town / City*</h4>
-                                        <input type="text" id="town" name="town" class="form-control">
+                                        <input type="text" id="city" name="city" class="form-control" value="{{ old('city', $user->city) }}">
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-md-12">
-                                    <div class="form-item">
-                                        <h4 class="form-title">State*</h4>
-                                        <div class="nice-select select-control form-control country open" tabindex="0"><span class="current">California</span><ul class="list"><li data-value="" class="option selected focus">California</li><li data-value="vdt" class="option">New Work</li><li data-value="can" class="option">Paris</li><li data-value="uk" class="option">Dhaka</li></ul></div>
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="form-group row">
                                 <div class="col-md-12">
                                     <div class="form-item">
                                         <h4 class="form-title">Zip Code*</h4>
-                                        <input type="text" id="zip" name="zip" class="form-control">
+                                        <input type="text" id="zip_code" name="zip_code" class="form-control" value="{{ old('zip_code', $user->zip_code) }}">
                                     </div>
                                 </div>
                             </div>
+
                             <div class="form-group row">
                                 <div class="col-md-12">
                                     <div class="form-item">
                                         <h4 class="form-title">Phone*</h4>
-                                        <input type="text" id="phone" name="phone" class="form-control">
+                                        <input type="text" id="phone" name="phone" class="form-control" value="{{ old('phone', $user->phone) }}">
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-md-12">
-                                    <div class="form-item">
-                                        <h4 class="form-title">Order Notes*</h4>
-                                        <textarea id="message" name="message" cols="30" rows="5" class="form-control address"></textarea>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-6 col-md-12">
-                <div class="checkout-right">
-                    <h3 class="form-header">Your Order</h3>
-                    <div class="order-box">
-                        <div class="order-items">
-                            <div class="order-item item-1">
-                                <div class="order-left">
-                                    <span class="product">Product</span>
-                                </div>
-                                <div class="order-right">
-                                    <span class="price">Price</span>
-                                </div>
-                            </div>
-                            <div class="order-item">
-                                <div class="order-left">
-                                    <div class="order-img"><img src="{{ asset('frontend/assets/img/shop/shop-1.png') }}" alt="img"></div>
-                                </div>
-                                <div class="order-right">
-                                    <div class="content">
-                                        <span class="category">Headphone</span>
-                                        <h4 class="title">Surge Shield Safeguard</h4>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="checkout-right">
+                        <h3 class="form-header">Your Order</h3>
+                        <div class="order-box">
+                            <div class="order-items">
+                                <div class="order-item item-1">
+                                    <div class="order-left">
+                                        <span class="product">Product</span>
                                     </div>
-                                    <span class="price">$500.00</span>
-                                </div>
-                            </div>
-                            <div class="order-item">
-                                <div class="order-left">
-                                    <div class="order-img"><img src="{{ asset('frontend/assets/img/shop/shop-2.png') }}" alt="img"></div>
-                                </div>
-                                <div class="order-right">
-                                    <div class="content">
-                                        <span class="category">Ups System</span>
-                                        <h4 class="title">Nova Sound Elegance</h4>
+                                    <div class="order-right">
+                                        <span class="price">Price</span>
                                     </div>
-                                    <span class="price">$500.00</span>
                                 </div>
-                            </div>
-                            <div class="order-item">
-                                <div class="order-left">
-                                    <div class="order-img"><img src="{{ asset('frontend/assets/img/shop/shop-3.png') }}" alt="img"></div>
-                                </div>
-                                <div class="order-right">
-                                    <div class="content">
-                                        <span class="category">Headset Mic</span>
-                                        <h4 class="title">Pure Pod Harmony</h4>
+
+                                @foreach ($carts as $row)
+                                    <div class="order-item">
+                                        <div class="order-left">
+                                            <a href="{{ route('course-details', $row->id) }}" class="order-img">
+                                                <img src="{{ asset($row->image) }}" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="order-right">
+                                            <div class="content">
+                                                <span class="category">{{ $row->cart_qty }} qty * $ {{ number_format($row->cart_price, 2) }}</span>
+                                                <h4 class="title">{{ $row->title }}</h4>
+                                            </div>
+                                            <span class="price">${{ number_format($row->cart_qty * $row->cart_price, 2) }}</span>
+                                        </div>
                                     </div>
-                                    <span class="price">$500.00</span>
-                                </div>
-                            </div>
-                            <div class="order-item item-1">
-                                <div class="order-left">
-                                    <span class="left-title">Subtotal</span>
-                                </div>
-                                <div class="order-right">
-                                    <span class="right-title">$500.00</span>
-                                </div>
-                            </div>
-                            <div class="order-item item-1">
-                                <div class="order-left">
-                                    <span class="left-title">Subtotal</span>
-                                </div>
-                                <div class="order-right">
-                                    <span class="right-title">$500.00</span>
-                                </div>
-                            </div>
-                            <div class="order-item item-1">
-                                <div class="order-left">
-                                    <span class="left-title">Shipping</span>
-                                </div>
-                                <div class="order-right">
-                                    <span class="right-title"><span>Flat rate:</span>$50.00</span>
-                                </div>
-                            </div>
-                            <div class="order-item item-1">
-                                <div class="order-left">
-                                    <span class="left-title">Total Price:</span>
-                                </div>
-                                <div class="order-right">
-                                    <span class="right-title title-2">$550.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="payment-option-wrap">
-                            <div class="payment-option">
-                                <div class="shipping-option">
-                                    <div class="options">
-                                        <input id="flat_rate" type="radio" name="shipping">
-                                        <label for="flat_rate">Direct Bank Transfer</label>
+                                @endforeach
+
+
+                                {{-- <div class="order-item">
+                                    <div class="order-left">
+                                        <div class="order-img"><img src="{{ asset('frontend/assets/img/shop/shop-2.png') }}" alt="img"></div>
                                     </div>
-                                    <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.</p>
+                                    <div class="order-right">
+                                        <div class="content">
+                                            <span class="category">Ups System</span>
+                                            <h4 class="title">Nova Sound Elegance</h4>
+                                        </div>
+                                        <span class="price">$500.00</span>
+                                    </div>
                                 </div>
-                                <div class="shipping-option">
-                                    <input id="local_pickup" type="radio" name="shipping">
-                                    <label for="local_pickup">Check Payments</label>
+
+                                <div class="order-item">
+                                    <div class="order-left">
+                                        <div class="order-img"><img src="{{ asset('frontend/assets/img/shop/shop-3.png') }}" alt="img"></div>
+                                    </div>
+                                    <div class="order-right">
+                                        <div class="content">
+                                            <span class="category">Headset Mic</span>
+                                            <h4 class="title">Pure Pod Harmony</h4>
+                                        </div>
+                                        <span class="price">$500.00</span>
+                                    </div>
+                                </div> --}}
+
+                                <div class="order-item item-1">
+                                    <div class="order-left">
+                                        <span class="left-title">Subtotal</span>
+                                    </div>
+                                    <div class="order-right">
+                                        <span class="right-title">${{ number_format(getTotalCartAmount(), 2) }}</span>
+                                    </div>
                                 </div>
-                                <div class="shipping-option">
-                                    <input id="free_shipping" type="radio" name="shipping">
-                                    <label for="free_shipping">Cash On Delivery</label>
-                                </div>
-                                <div class="shipping-option">
-                                    <input id="paypal" type="radio" name="shipping">
-                                    <label for="paypal">Paypal</label>
+
+                                {{-- <div class="order-item item-1">
+                                    <div class="order-left">
+                                        <span class="left-title">Shipping</span>
+                                    </div>
+                                    <div class="order-right">
+                                        <span class="right-title"><span>Flat rate:</span>$50.00</span>
+                                    </div>
+                                </div> --}}
+
+                                <div class="order-item item-1">
+                                    <div class="order-left">
+                                        <span class="left-title">Total Price:</span>
+                                    </div>
+                                    <div class="order-right">
+                                        <span class="right-title title-2">${{ number_format(getTotalCartAmount(), 2) }}</span>
+                                        <input type="hidden" name="total_amount" value="{{ getTotalCartAmount() }}">
+                                    </div>
                                 </div>
                             </div>
-                            <p class="desc">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <span>privacy policy.</span></p>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    I have read and agree terms and conditions *
-                                </label>
+
+                            <input type="hidden" name="total_product" value="{{ getTotalCart() }}">
+
+                            <div class="payment-option-wrap">
+                                <div class="payment-option">
+                                    {{-- <div class="shipping-option">
+                                        <div class="options">
+                                            <input id="flat_rate" type="radio" name="shipping">
+                                            <label for="flat_rate">Direct Bank Transfer</label>
+                                        </div>
+                                        <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.</p>
+                                    </div> --}}
+
+                                    {{-- <div class="shipping-option">
+                                        <input id="local_pickup" type="radio" name="shipping">
+                                        <label for="local_pickup">Check Payments</label>
+                                    </div> --}}
+
+                                    <div class="shipping-option mb-5">
+                                        <input id="free_shipping" type="radio" name="cod" value="cod">
+                                        <label for="free_shipping">Cash On Delivery</label>
+                                    </div>
+
+                                    {{-- <div class="shipping-option">
+                                        <input id="paypal" type="radio" name="shipping">
+                                        <label for="paypal">Paypal</label>
+                                    </div> --}}
+                                </div>
+                                
+                                {{-- <p class="desc">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <span>privacy policy.</span></p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        I have read and agree terms and conditions *
+                                    </label>
+                                </div> --}}
+
+                                <button class="ed-primary-btn order-btn">Place Your Order</button>
                             </div>
-                            <button class="ed-primary-btn order-btn">Place Your Order</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </section>
 <!-- ./ checkout-section -->

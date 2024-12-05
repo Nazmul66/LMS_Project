@@ -159,13 +159,14 @@
                 <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>10,000+ unique online courses</h4>
                 <h2 class="section-title wow fade-in-bottom" data-wow-delay="400ms">Most popular courses​</h2>
             </div>
-
-            contact --}}
+            
         </div>
+
         <div class="course-tab-content tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                 <div class="row gy-4 justify-content-center">
-                    <div class="col-lg-4 col-md-6">
+
+                    {{-- <div class="col-lg-4 col-md-6">
                         <div class="course-item">
                             <div class="course-thumb-wrap">
                                 <div class="course-thumb">
@@ -206,6 +207,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-lg-4 col-md-6">
                         <div class="course-item">
                             <div class="course-thumb-wrap">
@@ -246,7 +248,53 @@
                                 <a href="course-details.html" class="course-btn">View Details</a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
+
+                    @foreach ($courses as $item)
+                        <div class="col-lg-4 col-md-6">
+                            <div class="course-item">
+                                <div class="course-thumb-wrap">
+                                    <div class="course-thumb">
+                                        <img src="{{ asset($item->image) }}" alt="course">
+                                    </div>
+                                </div>
+                                <div class="course-content">
+                                    {{-- <span class="offer">Free</span> --}}
+                                    <h3 class="title"><a href="{{ route('course-details', $item->id) }}">{{ $item->title }}</a></h3>
+                                    <ul class="course-list">
+                                        <li><i class="fa-light fa-file"></i>Lesson {{ $item->lesson }}</li>
+                                        {{-- <li><i class="fa-light fa-user"></i>Students 50</li> --}}
+                                        {{-- <li><i class="fa-light fa-eye"></i>View: 12K</li> --}}
+                                    </ul>
+                                    <div class="course-author-box">
+                                        <div class="course-author">
+                                            <div class="author-img">
+                                                <img src="{{ asset($item->instructor_image) }}" alt="course">
+                                            </div>
+                                            <div class="author-info">
+                                                <h4 class="name">{{ $item->name }}</h4>
+                                                <span>{{ $item->designation }}</span>
+                                            </div>
+                                        </div>
+                                        {{-- <ul class="course-review">
+                                            <li><i class="fa-sharp fa-solid fa-star"></i></li>
+                                            <li><i class="fa-sharp fa-solid fa-star"></i></li>
+                                            <li><i class="fa-sharp fa-solid fa-star"></i></li>
+                                            <li><i class="fa-sharp fa-solid fa-star"></i></li>
+                                            <li><i class="fa-sharp fa-solid fa-star"></i></li>
+                                            <li class="point">(4.7)</li>
+                                        </ul> --}}
+                                    </div>
+                                </div>
+                                <div class="bottom-content">
+                                    <span class="price">${{ $item->price }}</span>
+                                    <a href="{{ route('course-details', $item->id) }}" class="course-btn">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+
                     <div class="col-lg-4 col-md-6">
                         <div class="course-item">
                             <div class="course-thumb-wrap">
@@ -255,12 +303,12 @@
                                 </div>
                             </div>
                             <div class="course-content">
-                                <span class="offer">Free</span>
+                                {{-- <span class="offer">Free</span> --}}
                                 <h3 class="title"><a href="course-details.html">Innovative Instructional Strategies <br>for Enhancing Student</a></h3>
                                 <ul class="course-list">
                                     <li><i class="fa-light fa-file"></i>Lesson 8</li>
-                                    <li><i class="fa-light fa-user"></i>Students 50</li>
-                                    <li><i class="fa-light fa-eye"></i>View: 12K</li>
+                                    {{-- <li><i class="fa-light fa-user"></i>Students 50</li> --}}
+                                    {{-- <li><i class="fa-light fa-eye"></i>View: 12K</li> --}}
                                 </ul>
                                 <div class="course-author-box">
                                     <div class="course-author">
@@ -272,14 +320,14 @@
                                             <span>Instructor</span>
                                         </div>
                                     </div>
-                                    <ul class="course-review">
+                                    {{-- <ul class="course-review">
                                         <li><i class="fa-sharp fa-solid fa-star"></i></li>
                                         <li><i class="fa-sharp fa-solid fa-star"></i></li>
                                         <li><i class="fa-sharp fa-solid fa-star"></i></li>
                                         <li><i class="fa-sharp fa-solid fa-star"></i></li>
                                         <li><i class="fa-sharp fa-solid fa-star"></i></li>
                                         <li class="point">(4.7)</li>
-                                    </ul>
+                                    </ul> --}}
                                 </div>
                             </div>
                             <div class="bottom-content">
@@ -288,8 +336,11 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
+
+
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <div class="row gy-4 justify-content-center">
                     <div class="col-lg-4 col-md-6">
