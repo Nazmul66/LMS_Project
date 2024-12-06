@@ -295,7 +295,7 @@
                     @endforeach
 
 
-                    <div class="col-lg-4 col-md-6">
+                    {{-- <div class="col-lg-4 col-md-6">
                         <div class="course-item">
                             <div class="course-thumb-wrap">
                                 <div class="course-thumb">
@@ -303,12 +303,12 @@
                                 </div>
                             </div>
                             <div class="course-content">
-                                {{-- <span class="offer">Free</span> --}}
+                                <span class="offer">Free</span>
                                 <h3 class="title"><a href="course-details.html">Innovative Instructional Strategies <br>for Enhancing Student</a></h3>
                                 <ul class="course-list">
                                     <li><i class="fa-light fa-file"></i>Lesson 8</li>
-                                    {{-- <li><i class="fa-light fa-user"></i>Students 50</li> --}}
-                                    {{-- <li><i class="fa-light fa-eye"></i>View: 12K</li> --}}
+                                    <li><i class="fa-light fa-user"></i>Students 50</li>
+                                    <li><i class="fa-light fa-eye"></i>View: 12K</li>
                                 </ul>
                                 <div class="course-author-box">
                                     <div class="course-author">
@@ -320,14 +320,14 @@
                                             <span>Instructor</span>
                                         </div>
                                     </div>
-                                    {{-- <ul class="course-review">
+                                    <ul class="course-review">
                                         <li><i class="fa-sharp fa-solid fa-star"></i></li>
                                         <li><i class="fa-sharp fa-solid fa-star"></i></li>
                                         <li><i class="fa-sharp fa-solid fa-star"></i></li>
                                         <li><i class="fa-sharp fa-solid fa-star"></i></li>
                                         <li><i class="fa-sharp fa-solid fa-star"></i></li>
                                         <li class="point">(4.7)</li>
-                                    </ul> --}}
+                                    </ul>
                                 </div>
                             </div>
                             <div class="bottom-content">
@@ -335,13 +335,13 @@
                                 <a href="course-details.html" class="course-btn">View Details</a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>
 
 
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            {{-- <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <div class="row gy-4 justify-content-center">
                     <div class="col-lg-4 col-md-6">
                         <div class="course-item">
@@ -848,7 +848,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>
