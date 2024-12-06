@@ -7,6 +7,10 @@
 <script src="{{ asset('frontend/assets/js/vendor/waypoints.min.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/vendor/moment.min.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/vendor/daterangepicker.min.js') }}"></script>
+
+<!-- toaster Js plugins  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 <script src="{{ asset('frontend/assets/js/vendor/venobox.min.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/vendor/odometer.min.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/vendor/countdown.js') }}"></script>
@@ -15,11 +19,21 @@
 <script src="{{ asset('frontend/assets/js/vendor/imagesloaded-pkgd.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/vendor/wow.min.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/vendor/nice-select.js') }}"></script>
+
 <script src="{{ asset('frontend/assets/js/vendor/swiper.min.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
 
 @stack('add-js')
 
+{!! Toastr::message() !!}
+
+<script>
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            toastr.error("{!! $error !!}");
+        @endforeach
+    @endif
+</script>
 
 <script>
     $.ajaxSetup({

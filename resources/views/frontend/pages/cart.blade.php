@@ -34,7 +34,7 @@
                         </thead>
                         <tbody>
 
-                            @foreach ($carts as $row)
+                            @forelse ($carts as $row)
                                 <tr>
                                     <td class="product-remove">
                                         <a href="{{ route('cart.delete', $row->id) }}">
@@ -57,8 +57,22 @@
                                     </td>
                                     <td class="product-subtotal"><span class="amount">${{ number_format($row->cart_price * $row->cart_qty, 2) }}</span></td>
                                 </tr>
-                            @endforeach
-
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        <div class="alert alert-danger mx-3" role="alert">
+                                            There are no products in your cart.
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        <div class="checkout-proceed">
+                                            <a href="{{ url('/') }}" class="ed-primary-btn checkout-btn">Go Back</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforelse
                             
                         </tbody>
                     </table>

@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Course;
 use App\Models\CourseModule;
 use App\Models\Order;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 
 class FrontendController extends Controller
@@ -43,6 +44,11 @@ class FrontendController extends Controller
     {
         // dd($request->all());
 
+        if( !Auth::check() ){
+            Toastr::error('Please Login First', 'error', ["positionClass" => "toast-top-right"]);
+            return redirect()->route('login');
+        }
+
         $cart = Cart::where('course_id', $request->course_id)
                 ->where('user_id', Auth::user()->id)
                 ->where('order_id', NULL)
@@ -52,6 +58,7 @@ class FrontendController extends Controller
                 $cart->qty += 1;
                 $cart->save();
 
+                Toastr::success('Product Quantity increase', 'Success', ["positionClass" => "toast-top-right"]);
                 return redirect()->route('cart');
             } 
             else {
@@ -68,11 +75,13 @@ class FrontendController extends Controller
 
                 $cart->save();
 
+                Toastr::success('Product added to cart', 'Success', ["positionClass" => "toast-top-right"]);
                 return redirect()->route('cart');
             }
         }
 
-        return redirect()->back()->with('error', 'Something went wrong. Please try again.');
+        Toastr::error('There is Something error', 'error', ["positionClass" => "toast-top-right"]);
+        return redirect()->back();
     }
 
 
@@ -97,6 +106,11 @@ class FrontendController extends Controller
      */
     public function checkout()
     {
+        if( !Auth::check() ){
+            Toastr::error('Please Login First', 'error', ["positionClass" => "toast-top-right"]);
+            return redirect()->route('login');
+        }
+
         $data['carts'] = Cart::getCartData();
         return view('frontend.pages.checkout', $data);
     }
@@ -122,43 +136,23 @@ class FrontendController extends Controller
 
         $order->order_id        = 'ID-' . uniqid();
         $order->user_id         =  Auth::user()->id;
-        $order->name            = $request->name;
-        $order->email           = $request->email;
-        $order->phone           = $request->phone;
-        $order->address         = $request->address;
-        $order->city            = $request->city;
-        $order->zip_code        = $request->zip_code;
         $order->total_product   = $request->total_product;
         $order->total_amount    = $request->total_amount;
-        $order->status          = 2;
+        $order->payment_method  = $request->payment_method;
+        $order->status          = 2;   // pending
         $order->save();
 
 
-        $user              = User::findOrFail(Auth::user()->id);
-        $user->name        = $order->name;
+        // update user
+        $user                  = User::findOrFail(Auth::user()->id);
+
+        $user->name            = $request->name;
+        $user->email           = $request->email;
+        $user->phone           = $request->phone;
+        $user->address         = $request->address;
+        $user->city            = $request->city;
+        $user->zip_code        = $request->zip_code;
         $user->update();
-
-        $address = Address::where('user_id', Auth::user()->id)->first();
-
-        if (!empty($address)) {
-            // Update the existing address
-            $address->phone    = $order->phone;
-            $address->address  = $order->address;
-            $address->city     = $order->city;
-            $address->zip_code = $order->zip_code;
-            $address->save();
-
-        } else {
-            // Create a new address if none exists
-            $address = new Address();
-
-            $address->user_id   = Auth::user()->id;
-            $address->phone     = $order->phone;
-            $address->address   = $order->address;
-            $address->city      = $order->city;
-            $address->zip_code  = $order->zip_code;
-            $address->save();
-        }
 
 
         $carts = Cart::where('user_id', Auth::user()->id)->where('order_id', NULL)->get();
@@ -168,14 +162,24 @@ class FrontendController extends Controller
             $cart->update();
         }
 
-        return redirect('/');
+        Toastr::success('Order Successfully Done', 'Success', ["positionClass" => "toast-top-right"]);
+        return redirect()->route('order.success', $order->order_id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function order_success(string $orderId)
     {
-        //
+        // dd($orderId);
+        $data['order'] =  Order::leftJoin('users', 'users.id', 'orders.user_id')
+                               ->select('users.*','orders.order_id','orders.total_product','orders.total_amount','orders.payment_method')
+                               ->where('orders.order_id', $orderId)
+                               ->first();
+        return view('frontend.pages.order-success', $data);
     }
+
+    public function email_order_success()
+    {
+        return view('frontend.pages.email-order-success');
+    }
+
+
 }

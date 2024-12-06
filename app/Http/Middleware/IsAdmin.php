@@ -17,14 +17,14 @@ class IsAdmin
     public function handle(Request $request, Closure $next): Response
     {
         if( !Auth::check() ){
-            return redirect('/login');
+            return redirect()->guest(route('login'));
         }
         else{
             if( Auth::user()->role == 1 ){
                 return $next($request);
             }
             else{
-                return redirect('/login');
+                return redirect()->back();
             }
         }
     }

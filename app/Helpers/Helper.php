@@ -17,10 +17,15 @@ if (!function_exists('getSetting')) {
 
 if (!function_exists('getTotalCart')) {
     function getTotalCart(){
-        $carts = Cart::leftJoin('courses', 'courses.id', 'carts.course_id')
-                ->select('courses.*', 'carts.price as cart_price', 'carts.qty as cart_qty')
-                ->where('carts.user_id', Auth::user()->id)->where('carts.order_id', NULL)
-                ->get()->count();
+        if( Auth::check() ){
+            $carts = App\Models\Cart::leftJoin('courses', 'courses.id', 'carts.course_id')
+                    ->select('courses.*', 'carts.price as cart_price', 'carts.qty as cart_qty')
+                    ->where('carts.user_id', Auth::user()->id)->where('carts.order_id', NULL)
+                    ->get()->count();
+        }
+        else{
+            $carts = 0;
+        }
 
         return $carts;
     }
@@ -28,10 +33,15 @@ if (!function_exists('getTotalCart')) {
 
 if (!function_exists('getTotalCartAmount')) {
     function getTotalCartAmount(){
+        if( Auth::check() ){
         $carts = Cart::leftJoin('courses', 'courses.id', 'carts.course_id')
                 ->select('courses.*', 'carts.price as cart_price', 'carts.qty as cart_qty')
                 ->where('carts.user_id', Auth::user()->id)->where('carts.order_id', NULL)
                 ->get();
+        }
+        else{
+            $carts = [];
+        }
 
         $total_amount = 0;
         foreach( $carts as $item ){

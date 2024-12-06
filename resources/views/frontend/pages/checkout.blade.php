@@ -8,12 +8,12 @@
     
 @endpush
 
-@php
+{{-- @php
     $user = App\Models\User::leftJoin('addresses', 'addresses.user_id', 'users.id')
            ->select('addresses.*', 'users.*')
            ->where('users.id', Auth::user()->id)
            ->first();
-@endphp
+@endphp --}}
 
 @section('body-content')
 
@@ -105,7 +105,7 @@
                                 <div class="col-md-12">
                                     <div class="form-item ">
                                         <h4 class="form-title">Street Address*</h4>
-                                        <input type="text" id="address" name="address" class="form-control street-control" value="{{ old('address',$user->address ) }}" placeholder="House number and street number">
+                                        <input type="text" id="address" name="address" class="form-control street-control" value="{{ old('address', Auth::user()->address ?? "") }}" placeholder="House number and street number">
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +114,7 @@
                                 <div class="col-md-12">
                                     <div class="form-item">
                                         <h4 class="form-title">Town / City*</h4>
-                                        <input type="text" id="city" name="city" class="form-control" value="{{ old('city', $user->city) }}">
+                                        <input type="text" id="city" name="city" class="form-control" value="{{ old('city', Auth::user()->city ?? "") }}">
                                     </div>
                                 </div>
                             </div>
@@ -123,7 +123,7 @@
                                 <div class="col-md-12">
                                     <div class="form-item">
                                         <h4 class="form-title">Zip Code*</h4>
-                                        <input type="text" id="zip_code" name="zip_code" class="form-control" value="{{ old('zip_code', $user->zip_code) }}">
+                                        <input type="number" id="zip_code" name="zip_code" class="form-control" value="{{ old('zip_code', Auth::user()->zip_code ?? "") }}">
                                     </div>
                                 </div>
                             </div>
@@ -132,7 +132,7 @@
                                 <div class="col-md-12">
                                     <div class="form-item">
                                         <h4 class="form-title">Phone*</h4>
-                                        <input type="text" id="phone" name="phone" class="form-control" value="{{ old('phone', $user->phone) }}">
+                                        <input type="text" id="phone" name="phone" class="form-control" value="{{ old('phone', Auth::user()->phone ?? "") }}">
                                     </div>
                                 </div>
                             </div>
@@ -246,7 +246,7 @@
                                     </div> --}}
 
                                     <div class="shipping-option mb-5">
-                                        <input id="free_shipping" type="radio" name="cod" value="cod">
+                                        <input id="free_shipping" type="radio" name="payment_method" value="cod" required>
                                         <label for="free_shipping">Cash On Delivery</label>
                                     </div>
 

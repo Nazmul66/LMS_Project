@@ -144,6 +144,7 @@
 
                             <div class="header-right-icon shop-btn">
                                 <a href="{{ route('cart') }}"><i class='bx bx-cart-alt' style="font-size: 24px;"></i></a>
+                                {{-- <span class="number">{{ $carts }}</span> --}}
                                 <span class="number">{{ getTotalCart() }}</span>
                             </div>
 

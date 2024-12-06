@@ -1,3 +1,4 @@
+
 <!-- header-area-start -->
 <header class="header header-3 sticky-active">
     <div class="top-bar">
@@ -148,7 +149,8 @@
 
                         <div class="header-right-icon shop-btn">
                             <a href="{{ route('cart') }}"><i class='bx bx-cart-alt' style="font-size: 24px;"></i></a>
-                            <span class="number">{{ getTotalCart() }}</span>
+                             {{-- <span class="number">{{ $carts }}</span> --}}
+                             <span class="number">{{ getTotalCart() }}</span>
                         </div>
 
                         {{-- <a href="contact.html" class="ed-primary-btn header-btn">Start Free Trial</a> --}}
