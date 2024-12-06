@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderSuccessMail;
 use Illuminate\Http\Request;
 use App\Models\Address;
 use App\Models\Cart;
@@ -12,6 +13,7 @@ use App\Models\Order;
 use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class FrontendController extends Controller
 {
@@ -112,6 +114,12 @@ class FrontendController extends Controller
         }
 
         $data['carts'] = Cart::getCartData();
+
+        if( $data['carts']->count() == 0 ){
+            Toastr::error('Please add at least 1 product', 'error', ["positionClass" => "toast-top-right"]);
+            return redirect()->route('home');
+        }
+
         return view('frontend.pages.checkout', $data);
     }
 
@@ -131,6 +139,11 @@ class FrontendController extends Controller
     public function order(Request $request)
     {
         // dd($request->all());
+
+        if( $request->total_product == 0 ){
+            Toastr::error('Please add at least 1 product', 'error', ["positionClass" => "toast-top-right"]);
+           return redirect()->route('home');
+        }
 
         $order = new Order();
 
@@ -162,6 +175,14 @@ class FrontendController extends Controller
             $cart->update();
         }
 
+        // Mail Order
+        $mail_order =  Order::leftJoin('users', 'users.id', 'orders.user_id')
+                            ->select('users.*','orders.order_id','orders.total_product','orders.total_amount','orders.payment_method')
+                            ->where('orders.order_id', $order->order_id)
+                            ->first();
+        
+        Mail::to($request->email)->send(new OrderSuccessMail($mail_order));
+
         Toastr::success('Order Successfully Done', 'Success', ["positionClass" => "toast-top-right"]);
         return redirect()->route('order.success', $order->order_id);
     }
@@ -170,9 +191,10 @@ class FrontendController extends Controller
     {
         // dd($orderId);
         $data['order'] =  Order::leftJoin('users', 'users.id', 'orders.user_id')
-                               ->select('users.*','orders.order_id','orders.total_product','orders.total_amount','orders.payment_method')
-                               ->where('orders.order_id', $orderId)
-                               ->first();
+                            ->select('users.*','orders.order_id','orders.total_product','orders.total_amount','orders.payment_method')
+                            ->where('orders.order_id', $orderId)
+                            ->first();
+        // return view('frontend.pages.order-success', $data);
         return view('frontend.pages.order-success', $data);
     }
 
@@ -180,6 +202,5 @@ class FrontendController extends Controller
     {
         return view('frontend.pages.email-order-success');
     }
-
 
 }

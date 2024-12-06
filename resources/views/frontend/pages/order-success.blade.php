@@ -35,6 +35,9 @@
     <!-- Theme css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('multikart/assets/css/style.css') }}">
 
+    <!-- toaster css plugin -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 </head>
 
 <body class="theme-color-1">
@@ -1167,6 +1170,9 @@
     <!-- lazyload js-->
     <script src="{{ asset('multikart/assets/js/lazysizes.min.js') }}"></script>
 
+    <!-- toaster Js plugins  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
     <!-- slick js-->
     <script src="{{ asset('multikart/assets/js/slick.js') }}"></script>
 
@@ -1180,7 +1186,23 @@
     <script src="{{ asset('multikart/assets/js/theme-setting.js') }}"></script>
     <script src="{{ asset('multikart/assets/js/script.js') }}"></script>
 
+    {!! Toastr::message() !!}
 
+    <script>
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                toastr.error("{!! $error !!}");
+            @endforeach
+        @endif
+    </script>
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
 </body>
 
 </html>

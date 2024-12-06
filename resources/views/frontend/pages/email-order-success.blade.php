@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="images/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
-    <title>Multikart | Email template</title>
+    <title>Email template</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet" />
 </head>
 
@@ -36,7 +36,7 @@
                         <tr>
                             <td>
                                 <p style="margin: 15px 0">Payment Is Successfully Processsed And Your Order Is On The Way</p>
-                                <p style="margin: 15px 0">Transaction ID:267676GHERT105467</p>
+                                <p style="margin: 15px 0">Transaction ID: {{ $mailData->order_id }}</p>
                             </td>
                         </tr>
                         <tr>
@@ -71,28 +71,42 @@
                             <th style="font-size: 16px; padding: 15px; text-align: center; border: 1px solid #ddd; border-collapse: collapse">
                                 PRICE</th>
                         </tr>
-                        <tr>
-                            <td style="border: 1px solid #ddd; border-collapse: collapse">
-                                <img src="{{ asset('multikart/email-template/images/product/8.jpg') }}" alt="" width="70" />
-                            </td>
-                            <td style="border: 1px solid #ddd; border-collapse: collapse; padding-left: 15px" valign="top">
-                                <h5 style="text-align: left; font-weight: 400; margin-top: 15px; color: #444">Three seater Wood Style sofa for Leavingroom</h5>
-                            </td>
-                            <td style="border: 1px solid #ddd; border-collapse: collapse; padding-left: 15px" valign="top">
-                                {{-- <h5 style="text-align: left; font-weight: 400; font-size: 14px; color: #444; margin-top: 15px; margin-bottom: 0px">
-                                    Size : <span> L</span></h5> --}}
-                                <h5 style="text-align: left; font-weight: 400; font-size: 14px; color: #444; margin-top: 10px">QTY :
-                                    <span>1</span>
-                                </h5>
-                            </td>
-                            <td style="border: 1px solid #ddd; border-collapse: collapse; padding-left: 15px" valign="top">
-                                <h5 style="text-align: left; font-weight: 400; font-size: 14px; color: #444; margin-top: 15px">
-                                    <b>$500</b>
-                                </h5>
-                            </td>
-                        </tr>
 
-                        <tr>
+                        @php
+                            $carts = App\Models\Cart::
+                                    leftJoin('courses', 'courses.id', 'carts.course_id')->select('courses.image', 'courses.title', 'carts.price', 'carts.qty')
+                                    ->where('carts.order_id', $mailData->order_id)
+                                    ->get();
+                        @endphp
+
+                        @foreach ($carts as $row)
+                            <tr>
+                                <td style="border: 1px solid #ddd; border-collapse: collapse">
+                                    <img src="{{ asset($row->image) }}" alt="" width="70" />
+                                </td>
+
+                                <td style="border: 1px solid #ddd; border-collapse: collapse; padding-left: 15px" valign="top">
+                                    <h5 style="text-align: left; font-weight: 400; margin-top: 15px; color: #444">{{ $row->title }}</h5>
+                                </td>
+
+                                <td style="border: 1px solid #ddd; border-collapse: collapse; padding-left: 15px" valign="top">
+                                    {{-- <h5 style="text-align: left; font-weight: 400; font-size: 14px; color: #444; margin-top: 15px; margin-bottom: 0px">
+                                        Size : <span> L</span></h5> --}}
+                                    <h5 style="text-align: left; font-weight: 400; font-size: 14px; color: #444; margin-top: 10px">QTY :
+                                        <span>{{ $row->qty }}</span>
+                                    </h5>
+                                </td>
+
+                                <td style="border: 1px solid #ddd; border-collapse: collapse; padding-left: 15px" valign="top">
+                                    <h5 style="text-align: left; font-weight: 400; font-size: 14px; color: #444; margin-top: 15px">
+                                        <b>${{ $row->price }}</b>
+                                    </h5>
+                                </td>
+                            </tr>
+                        @endforeach
+                        
+
+                        {{-- <tr>
                             <td style="border: 1px solid #ddd; border-collapse: collapse">
                                 <img src="{{ asset('multikart/email-template/images/product/9.jpg') }}" alt="" width="70" />
                             </td>
@@ -100,8 +114,8 @@
                                 <h5 style="text-align: left; font-weight: 400; margin-top: 15px; color: #444">Three seater Wood Style sofa for Leavingroom</h5>
                             </td>
                             <td style="border: 1px solid #ddd; border-collapse: collapse; padding-left: 15px" valign="top">
-                                {{-- <h5 style="text-align: left; font-weight: 400; font-size: 14px; color: #444; margin-top: 15px; margin-bottom: 0px">
-                                    Size : <span> L</span></h5> --}}
+                                <h5 style="text-align: left; font-weight: 400; font-size: 14px; color: #444; margin-top: 15px; margin-bottom: 0px">
+                                    Size : <span> L</span></h5>
                                 <h5 style="text-align: left; font-weight: 400; font-size: 14px; color: #444; margin-top: 10px">QTY :
                                     <span>1</span>
                                 </h5>
@@ -111,13 +125,14 @@
                                     <b>$500</b>
                                 </h5>
                             </td>
-                        </tr>
+                        </tr> --}}
+
 
                         <tr>
                             <td style="border-bottom: 1px solid #ddd; border-collapse: collapse; line-height: 49px; font-size: 13px; color: #000000; padding-left: 20px; text-align: left; border-right: unset" colspan="2" style="line-height: 49px; font-size: 13px; color: #000000; padding-left: 20px; text-align: left; border-right: unset">
                                 Products:</td>
                             <td style="border-bottom: 1px solid #ddd; line-height: 49px; padding-right: 28px; font-size: 13px; color: #000000; text-align: right; border-left: unset" colspan="3" class="price" style="line-height: 49px; text-align: right; padding-right: 28px; font-size: 13px; color: #000000; text-align: right; border-left: unset">
-                                <b>$2600.00</b>
+                                <b>${{ number_format($mailData->total_amount, 2) }}</b>
                             </td>
                         </tr>
 
@@ -147,7 +162,7 @@
                             <td style="border-bottom: 1px solid #ddd; border-collapse: collapse; line-height: 49px; font-size: 13px; color: #000000; padding-left: 20px; text-align: left; border-right: unset" colspan="2" style="line-height: 49px; font-size: 13px; color: #000000; padding-left: 20px; text-align: left; border-right: unset">
                                 TOTAL PAID :</td>
                             <td style="border-bottom: 1px solid #ddd; line-height: 49px; padding-right: 28px; font-size: 13px; color: #000000; text-align: right; border-left: unset" colspan="3" class="price" style="line-height: 49px; text-align: right; padding-right: 28px; font-size: 13px; color: #000000; text-align: right; border-left: unset">
-                                <b>$2600</b>
+                                <b>${{ $mailData->total_amount }}</b>
                             </td>
                         </tr>
                     </table>
@@ -157,18 +172,18 @@
                             <tr>
                                 <td style="font-size: 13px; font-weight: 400; color: #444444; letter-spacing: 0.2px; width: 50%">
                                     <h5 style="text-align: left; font-weight: 400; font-size: 16px; font-weight: 500; color: #000; line-height: 16px; padding-bottom: 13px; border-bottom: 1px solid #e6e8eb; letter-spacing: -0.65px; margin-top: 0; margin-bottom: 13px">
-                                        DILIVERY ADDRESS</h5>
+                                        Delivery Address</h5>
                                     <p style="margin: 15px 0; text-align: left; font-weight: normal; font-size: 14px; color: #000000; line-height: 21px; margin-top: 0">
-                                        268 Cambridge Lane New Albany,<br /> IN 47150268 Cambridge Lane <br />New Albany, IN 47150
+                                        {{ $mailData->address }}
                                     </p>
                                 </td>
                                 <td width="57" height="25" class="user-info">
                                     <img src="{{ asset('multikart/email-template/images/space.jpg') }}" alt=" " height="25" width="57" /></td>
                                 <td class="user-info" style="font-size: 13px; font-weight: 400; color: #444444; letter-spacing: 0.2px; width: 50%">
                                     <h5 style="text-align: left; font-weight: 400; font-size: 16px; font-weight: 500; color: #000; line-height: 16px; padding-bottom: 13px; border-bottom: 1px solid #e6e8eb; letter-spacing: -0.65px; margin-top: 0; margin-bottom: 13px">
-                                        SHIPPING ADDRESS</h5>
+                                        Shipping Address</h5>
                                     <p style="margin: 15px 0; text-align: left; font-weight: normal; font-size: 14px; color: #000000; line-height: 21px; margin-top: 0">
-                                        268 Cambridge Lane New Albany,<br /> IN 47150268 Cambridge Lane <br />New Albany, IN 47150
+                                        {{ $mailData->address }}
                                     </p>
                                 </td>
                             </tr>
@@ -189,9 +204,11 @@
                 <table style="margin-top: 20px" border="0" cellpadding="0" cellspacing="0" class="footer-social-icon" align="center" class="text-center" style="margin-top: 20px; text-align: center">
                     <tr>
                         <td>
-                            <a style="text-decoration: none" href="#">
-                                <img style="margin-left: 5px; margin-right: 5px" src="{{ asset('multikart/email-template/images/facebook.png') }}" alt="" />
-                            </a>
+                            @if ( !empty(getSetting()->facebook_url) )
+                                <a style="text-decoration: none" href="{{ getSetting()->facebook_url }}">
+                                    <img style="margin-left: 5px; margin-right: 5px" src="{{ asset('multikart/email-template/images/facebook.png') }}" alt="" />
+                                </a> 
+                            @endif
                         </td>
 
                         {{-- <td>
@@ -201,21 +218,25 @@
                         </td> --}}
 
                         <td>
-                            <a style="text-decoration: none" href="#">
-                                <img style="margin-left: 5px; margin-right: 5px" src="{{ asset('multikart/email-template/images/twitter.png') }}" alt="" />
-                            </a>
+                            @if ( !empty(getSetting()->twitter_url) )
+                                <a style="text-decoration: none" href="{{ getSetting()->twitter_url }}">
+                                    <img style="margin-left: 5px; margin-right: 5px" src="{{ asset('multikart/email-template/images/twitter.png') }}" alt="" />
+                                </a>
+                            @endif
                         </td>
 
                         <td>
-                            <a style="text-decoration: none" href="#">
+                            <a style="text-decoration: none" href="mailto: {{ $mailData->email }}">
                                 <img style="margin-left: 5px; margin-right: 5px" src="{{ asset('multikart/email-template/images/gplus.png') }}" alt="" />
                             </a>
                         </td>
 
                         <td>
-                            <a style="text-decoration: none" href="#">
-                                <img style="margin-left: 5px; margin-right: 5px" src="{{ asset('multikart/email-template/images/linkedin.png') }}" alt="" />
-                          </a>
+                            @if ( !empty(getSetting()->linkedin_url) )
+                                <a style="text-decoration: none" href="{{ getSetting()->linkedin_url }}">
+                                    <img style="margin-left: 5px; margin-right: 5px" src="{{ asset('multikart/email-template/images/linkedin.png') }}" alt="" />
+                                </a>
+                            @endif
                         </td>
 
                         {{-- <td>
@@ -236,7 +257,7 @@
                         </tr> --}}
                         <tr>
                             <td>
-                                <p style="font-size: 13px; margin: 0">Copyright © 2024 EdCare. All Rights Reserved.</p>
+                                <p style="font-size: 13px; margin: 0">Copyright © <u><a href="{{ url('/') }}">{{ getSetting()->copyright ?? '2024' }}</a></u> . All Rights Reserved.</p>
                             </td>
                         </tr>
                         {{-- <tr>
