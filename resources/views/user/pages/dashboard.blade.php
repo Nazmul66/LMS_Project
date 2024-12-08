@@ -1,0 +1,69 @@
+@extends('user.layout.master')
+
+@push('add-css')
+    
+@endpush
+
+@section('body-content')
+
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="st_title"> Dashboard</h2>
+    </div>
+
+    <div class="col-xl-3 col-lg-6 col-md-6">
+        <div class="card_dash">
+            <div class="card_dash_left">
+                <h5>Total Sales</h5>
+                <h2>$350</h2>
+                <span class="crdbg_1">New $50</span>
+            </div>
+            <div class="card_dash_right">
+                <img src="images/dashboard/achievement.svg" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6">
+        <div class="card_dash">
+            <div class="card_dash_left">
+                <h5>Total Enroll</h5>
+                <h2>1500</h2>
+                <span class="crdbg_2">New 125</span>
+            </div>
+            <div class="card_dash_right">
+                <img src="images/dashboard/graduation-cap.svg" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6">
+        <div class="card_dash">
+            <div class="card_dash_left">
+                <h5>Total Courses</h5>
+                <h2>130</h2>
+                <span class="crdbg_3">New 5</span>
+            </div>
+            <div class="card_dash_right">
+                <img src="images/dashboard/online-course.svg" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6">
+        <div class="card_dash">
+            <div class="card_dash_left">
+                <h5>Total Students</h5>
+                <h2>2650</h2>
+                <span class="crdbg_4">New 245</span>
+            </div>
+            <div class="card_dash_right">
+                <img src="images/dashboard/knowledge.svg" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+@endsection
+
+
+@push('add-js')
+    
+@endpush
