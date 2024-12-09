@@ -34,7 +34,13 @@
                     </div>
                     <a href="instructor_dashboard.html" class="item channel_item">Dashboard</a>
                     <a href="membership.html" class="item channel_item">My Courses</a>
-                    <a href="sign_in.html" class="item channel_item">Sign Out</a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" style="border: none;
+                            background: transparent;" class="item channel_item"> 
+                            <span key="t-logout">Sign Out</span>
+                        </button>    
+                    </form>
                 </div>
             </li>
         </ul>

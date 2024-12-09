@@ -322,3 +322,7 @@ body[data-sidebar=dark] #sidebar-menu ul li button {
     color: #7f8387;
     transition: all .4s;
 }
+
+.note-editor .note-toolbar, .note-popover .popover-content {
+    border-bottom: 1px solid #CCD2D8 !important;
+}

@@ -11,9 +11,11 @@
 <!-- Stylesheets -->
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,500' rel='stylesheet'>
 <link href='{{ asset('user/vendor/unicons-2.0.1/css/unicons.css') }}' rel='stylesheet'>
-<link href="{{ asset('user/css/vertical-responsive-menu1.min.cs') }}s" rel="stylesheet">
+<link href="{{ asset('user/css/vertical-responsive-menu1.min.css') }}" rel="stylesheet">
+<link href="{{ asset('user/css/vertical-responsive-menu.min.css') }}" rel="stylesheet">
 <link href="{{ asset('user/css/instructor-dashboard.css') }}" rel="stylesheet">
 <link href="{{ asset('user/css/style.css') }}" rel="stylesheet">
+<link href="{{ asset('user/css/responsive.css') }}" rel="stylesheet">
 <link href="{{ asset('user/css/instructor-responsive.css') }}" rel="stylesheet">
 <link href="{{ asset('user/css/night-mode.css') }}" rel="stylesheet">
 

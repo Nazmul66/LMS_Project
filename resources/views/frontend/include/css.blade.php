@@ -28,4 +28,10 @@
 <!-- toaster css plugin -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
+<style>
+    .dropdown-item {
+        color: var(--bs-dropdown-link-color) !important;
+    }
+</style>
+
 @stack('add-css')
