@@ -8,6 +8,7 @@ use App\Models\CourseVideo;
 use Illuminate\Support\Facades\DB;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class CourseVideoController extends Controller
 {
@@ -58,6 +59,7 @@ class CourseVideoController extends Controller
 
             $course_video->course_module_id    = $request->course_module_id;
             $course_video->video_title         = $request->video_title;
+            $course_video->video_slug          = Str::slug($request->video_title);
             $course_video->video_timer         = $request->video_timer;
             $course_video->video_link          = $request->video_link;
             $course_video->status              = $request->status;
@@ -65,7 +67,6 @@ class CourseVideoController extends Controller
             $course_video->updated_at          = date('Y-m-d H:i:s');
 
             $course_video->save();
-
         } catch (\Exception $e) {
             dd($e);
             DB::rollback();

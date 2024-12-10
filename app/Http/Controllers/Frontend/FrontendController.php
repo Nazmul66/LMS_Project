@@ -152,7 +152,7 @@ class FrontendController extends Controller
         $order->total_product   = $request->total_product;
         $order->total_amount    = $request->total_amount;
         $order->payment_method  = $request->payment_method;
-        $order->status          = 2;   // pending
+        $order->status          = 1;   // pending
         $order->save();
 
 

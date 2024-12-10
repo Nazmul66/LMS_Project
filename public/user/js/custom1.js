@@ -158,12 +158,31 @@ $('input[name="paymentmethod"]').on('click', function() {
 
 // Right Click Disable
 window.oncontextmenu = function() {
-    return false;
-}
-$(document).keydown(function(event) {
-    if (event.keyCode == 123) {
-        return false;
-    } else if ((event.ctrlKey && event.shiftKey && event.keyCode == 73) || (event.ctrlKey && event.shiftKey && event.keyCode == 74)) {
-        return false;
+    return false; // Disable right-click context menu
+};
+
+document.addEventListener('keydown', function (event) {
+    // Check for Ctrl + U (View Source)
+    if ((event.ctrlKey || event.metaKey) && event.key === 'u') {
+        event.preventDefault();
+        // alert("Viewing source is disabled.");
     }
+
+    // Check for Ctrl + Shift + C (Inspect Element)
+    if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key === 'c') {
+        event.preventDefault();
+        // alert("Inspect element is disabled.");
+    }
+
+    // Check for Ctrl + Shift + I (Developer Tools)
+    if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key === 'I') {
+        event.preventDefault();
+        // alert("Developer tools are disabled.");
+    }
+});
+
+// Block the right-click menu to prevent "Inspect"
+document.addEventListener('contextmenu', function(event) {
+    event.preventDefault();
+    // alert("Right-click is disabled.");
 });

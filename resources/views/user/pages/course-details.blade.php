@@ -4,6 +4,8 @@
     
 @endpush
 
+@section('dashboard', 'active')
+
 @section('body-content')
 
 
@@ -15,7 +17,7 @@
                     <div class="row justify-content-center">
                         <div class="col-xl-4 col-lg-5 col-md-6">
                             <div class="preview_video">
-                                <a href="{{ route('user.course.videos', $course->id) }}" class="fcrse_img" data-bs-toggle="modal" data-bs-target="#videoModal">
+                                <a href="{{ route('user.course.module', $course->id) }}" class="fcrse_img" data-bs-toggle="modal" data-bs-target="#videoModal">
                                     <img src="{{ asset($course->image) }}" alt="">
                                     <div class="course-overlay">
                                         {{-- <div class="badge_seller">Bestseller</div> --}}
@@ -91,7 +93,7 @@
                             <ul class="_215b31">
                                 <li>
                                     <button class="btn_adcart">
-                                        <a href="{{ route('user.course.videos', $course->id) }}" style="color: #FFF;">Preview This Course</a>
+                                        <a href="{{ route('user.course.module', $course->id) }}" style="color: #FFF;">Preview This Course</a>
                                     </button>
                                 </li>
                             </ul>

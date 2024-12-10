@@ -60,16 +60,10 @@
     <!-- Body Start -->
     <div class="lecture-container-wrap d-flex">
         <div class="lecture-sidebar">
-            <h4 class="p-4 lecture-sidebar-course-title">The Web Developer Bootcamp </h4>
-
-            {{-- <div>
-                <p>Current Segment: {{ request()->segment(4) }}</p>
-            </div> --}}
-        
+            <h4 class="p-4 lecture-sidebar-course-title">The Web Developer Bootcamp</h4>
             <div class="lecture-sidebar-curriculum-wrap">
                 <div class="course-course-section">
 
-                    {{-- Others sidebar added --}}
                     @foreach ($course_modules as $item)
                         <div class="section-header pp-2 d-flex">
                             <span class="section-name flex-grow-1 ms-2 d-flex">
@@ -83,7 +77,8 @@
                         
                         <div class="course-section-body">
                             @foreach ($course_videos as $index => $row)
-                                <div class="sidebar-section-item {{ request()->segment(4) === $row->video_slug ? 'active' : '' }}">
+
+                                <div class="sidebar-section-item {{ $index === 0 ? 'active' : '' }}">
                                     <div class="section-item-title border-bottom">
                                         <a href="{{ route('user.course.videos', [$id, $row->video_slug]) }}" class="pp-2 d-flex">
                                             <span class="lecture-status-icon pr-1">

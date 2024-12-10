@@ -28,5 +28,7 @@
 <link href="{{ asset('user/vendor/bootstrap-select/docs/docs/dist/css/bootstrap-select.min.css') }}" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{{ asset('user/vendor/semantic/semantic.min.css') }}">
 
+<!-- toaster css plugin -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 @stack('add-css')

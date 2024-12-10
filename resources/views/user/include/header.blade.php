@@ -17,23 +17,24 @@
         <ul>
             <li class="profile-dropdown">
                 <a href="#" class="opts_account" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                    <img src="{{ asset('user/images/hd_dp.jpg') }}" alt="">
+                    <img src="{{ asset(Auth::user()->image) }}" alt="" style="width: 40px;
+                    height: 40px; border-radius: 50px;">
                 </a>
                 <div class="dropdown-menu dropdown_account drop-down dropdown-menu-end">
                     <div class="channel_my">
                         <div class="profile_link">
-                            <img src="{{ asset('user/images/hd_dp.jpg') }}" alt="">
+                            <img src="{{ asset(Auth::user()->image) }}" alt="" style="width: 40px; height: 40px; border-radius: 50px;">
                             <div class="pd_content">
                                 <div class="rhte85">
-                                    <h6>Joginder Singh</h6>
+                                    <h6>{{ Auth::user()->name }}</h6>
                                 </div>
-                                <span>gambol943@gmail.com</span>
+                                <span>{{ Auth::user()->email }}</span>
                             </div>
                         </div>
-                        <a href="my_instructor_profile_view.html" class="dp_link_12">View Profile</a>
+                        <a href="{{ route('user.user.profile') }}" class="dp_link_12">View Profile</a>
                     </div>
-                    <a href="instructor_dashboard.html" class="item channel_item">Dashboard</a>
-                    <a href="membership.html" class="item channel_item">My Courses</a>
+                    <a href="{{ route('user.dashboard') }}" class="item channel_item">Dashboard</a>
+                    <a href="{{ route('user.order') }}" class="item channel_item">My Order</a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" style="border: none;
