@@ -113,11 +113,11 @@ class UserDashboardController extends Controller
 
         DB::beginTransaction();
         try {
-            $user->name    = $request->name;
-            $user->phone    = $request->phone;
-            $user->city    = $request->city;
-            $user->zip_code    = $request->zip_code;
-            $user->address    = $request->address;
+            $user->name         = $request->name;
+            $user->phone        = $request->phone;
+            $user->city         = $request->city;
+            $user->zip_code     = $request->zip_code;
+            $user->address      = $request->address;
             
             if ($request->hasFile('image')) {
                 $images = $request->file('image');

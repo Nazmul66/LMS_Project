@@ -7,10 +7,19 @@ use App\Http\Controllers\Admin\GeneralSettingController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CourseModuleController;
 use App\Http\Controllers\Admin\CourseVideoController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\AdminController;
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth','IsAdmin']], function () {
 
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+
+    // Admin
+    Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
+        Route::get('/', [AdminController::class, 'index'])->name('index');
+        Route::post('/update', [AdminController::class, 'admin_update'])->name('update');
+        Route::post('/password-change', [AdminController::class, 'password_change'])->name('password.change');
+    });
 
     // Contacts
     Route::group(['prefix' => 'contact', 'as' => 'contact.'], function () {
@@ -18,6 +27,15 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth','Is
         Route::get('{id}/view', [ContactController::class, 'view'])->name('view');
         Route::get('{id}/delete', [ContactController::class, 'delete'])->name('delete');
         Route::post('/toggle-status', [ContactController::class, 'toggleStatus'])->name('toggleStatus');
+    });
+
+
+    // Order
+    Route::group(['prefix' => 'order', 'as' => 'order.'], function () {
+        Route::get('/', [OrderController::class, 'index'])->name('index');
+        Route::get('/edit/{id}', [OrderController::class, 'edit'])->name('edit');
+        Route::post('/update/{id}', [OrderController::class, 'update'])->name('update');
+        Route::get('/delete/{id}', [OrderController::class, 'delete'])->name('delete');
     });
 
 

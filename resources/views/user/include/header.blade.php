@@ -9,8 +9,8 @@
     </button> --}}
 
     <div class="main_logo" id="logo">
-        <a href="index.html"><img src="{{ asset('user/images/logo.svg') }}" alt=""></a>
-        <a href="index.html"><img class="logo-inverse" src="{{ asset('user/images/ct_logo.svg') }}" alt=""></a>
+        <a href="index.html"><img src="{{ asset(getSetting()->logo) }}" alt="" width="50"></a>
+        <a href="index.html"><img class="logo-inverse" src="{{ asset(getSetting()->logo) }}" alt="" width="50"></a>
     </div>
 
     <div class="header_right">

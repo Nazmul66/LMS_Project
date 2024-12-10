@@ -11,14 +11,14 @@
 
                 <li class="menu--item">
                     <a href="{{ route('user.order') }}" class="menu--link @yield('order')" title="Courses">
-                        <i class='bx bx-book menu--icon'></i>
+                        <i class='bx bxs-bar-chart-alt-2 menu--icon'></i>
                         <span class="menu--label">Order</span>
                     </a>
                 </li>
 
                 <li class="menu--item">
                     <a href="{{ route('user.user.profile') }}" class="menu--link @yield('user-profile')" title="Courses">
-                        <i class='bx bx-book menu--icon'></i>
+                        <i class='bx bx-user-circle menu--icon'></i>
                         <span class="menu--label">My Profile</span>
                     </a>
                 </li>

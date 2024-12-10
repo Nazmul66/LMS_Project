@@ -407,7 +407,7 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
-                    <a class="dropdown-item" href=""><i
+                    <a class="dropdown-item" href="{{ route('admin.profile.index') }}"><i
                             class="bx bx-user font-size-16 align-middle me-1"></i> <span
                             key="t-profile">Profiles</span></a>
                     {{-- <a class="dropdown-item" href="#"><i

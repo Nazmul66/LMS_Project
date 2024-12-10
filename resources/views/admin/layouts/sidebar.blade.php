@@ -14,12 +14,12 @@
                     </a>
                 </li>
                 
-                <li>
+                {{-- <li>
                     <a href="{{ route('admin.contact.index') }}" class="waves-effect">
                         <i class="bx bxs-user-detail"></i>
                         <span key="t-contacts">Contacts</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="@yield('course')">
                     <a href="{{ route('admin.course.index') }}" class="waves-effect">
@@ -28,12 +28,19 @@
                     </a>
                 </li>
 
-                {{-- <li class="@yield('course_video')">
-                    <a href="{{ route('admin.course_video.index') }}" class="waves-effect">
-                        <i class="bx bx bx-dollar-circle"></i>
-                        <span key="t-course">Course Videos</span>
+                <li class="@yield('order')">
+                    <a href="{{ route('admin.order.index') }}" class="waves-effect">
+                        <i class='bx bxs-bar-chart-alt-2'></i>
+                        <span key="t-course">Orders</span>
                     </a>
-                </li> --}}
+                </li>
+
+                <li>
+                    <a href="{{ route('admin.profile.index') }}" class="waves-effect">
+                        <i class='bx bxs-user'></i>
+                        <span key="t-section">Admin Profile</span>
+                    </a>
+                </li>
 
                 <li>
                     <a href="{{ route('admin.setting.general.setting') }}" class="waves-effect">
