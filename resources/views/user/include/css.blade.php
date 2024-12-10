@@ -6,7 +6,7 @@
 <title>Cursus - Dashboard</title>
 
 <!-- Favicon Icon -->
-<link rel="icon" type="image/png" href="{{ asset('user/images/fav.png') }}">
+<link rel="icon" type="image/png" href="{{ asset(getSetting()->favicon) }}">
 
 <!-- Stylesheets -->
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,500' rel='stylesheet'>

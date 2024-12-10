@@ -9,7 +9,7 @@
 <title>EdCare - @stack('add-title')</title>
 
 <!-- Place favicon.ico in the root directory -->
-<link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/img/favicon.png') }}">
+<link rel="shortcut icon" type="image/x-icon" href="{{ asset(getSetting()->favicon) }}">
 
 <!-- CSS here -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
