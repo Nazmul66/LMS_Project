@@ -147,12 +147,14 @@ class FrontendController extends Controller
 
         $order = new Order();
 
-        $order->order_id        = 'ID-' . uniqid();
-        $order->user_id         =  Auth::user()->id;
-        $order->total_product   = $request->total_product;
-        $order->total_amount    = $request->total_amount;
-        $order->payment_method  = $request->payment_method;
-        $order->status          = 2;   // pending
+        $order->order_id           = 'ID-' . uniqid();
+        $order->user_id            =  Auth::user()->id;
+        $order->total_product      = $request->total_product;
+        $order->total_amount       = $request->total_amount;
+        $order->payment_method     = $request->payment_method;
+        $order->payment_number     = $request->payment_number;
+        $order->transaction_id     = $request->transaction_id;
+        $order->status             = 2;   // pending
         $order->save();
 
 

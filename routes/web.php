@@ -21,7 +21,7 @@ Route::controller(FrontendController::class)->group(function () {
         Route::get('/cart', 'cart')->name('cart');
         Route::post('/cart-store', 'cart_store')->name('cart.store');
         Route::get('/cart-delete/{id}', 'cart_delete')->name('cart.delete');
-        Route::get('/checkout', 'checkout')->name('checkout');
+        Route::get('/checkout', 'checkout')->name('checkout')->middleware('noBack');
         Route::post('/order', 'order')->name('order');
         Route::get('/order-success/{orderId}', 'order_success')->name('order.success');
         Route::get('/email-order-success', 'email_order_success')->name('email.order.success');

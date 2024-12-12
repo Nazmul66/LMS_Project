@@ -23,6 +23,8 @@ return new class extends Migration
             $table->integer('zip_code')->nullable();
             $table->integer('total_product');
             $table->integer('total_amount');
+            $table->integer('payment_number')->nullable();
+            $table->integer('transaction_id')->nullable();
             $table->integer('status')->comment('1=paid, 2=pending, 3=cancel');
             $table->timestamps();
         });

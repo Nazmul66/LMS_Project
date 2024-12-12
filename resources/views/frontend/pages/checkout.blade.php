@@ -246,8 +246,8 @@
                                     </div> --}}
 
                                     <div class="shipping-option mb-5">
-                                        <input id="free_shipping" type="radio" name="payment_method" value="cod" required>
-                                        <label for="free_shipping" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Cash On Delivery</label>
+                                        <input id="free_shipping" type="radio" name="payment_method" value="cash_payment" required data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <label for="free_shipping" >Cash Payment</label>
 
                                         <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                             <div class="accordion-body">
