@@ -8,6 +8,8 @@
     
 @endpush
 
+@section('cart', 'active')
+
 @section('body-content')
 
 <!-- header-area-start -->

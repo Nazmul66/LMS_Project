@@ -60,11 +60,16 @@
                             </div>
                         </div>
 
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="video_link" class="form-label">Video Link <span
                                         class="text-danger">*</span></label>
-                                <textarea class="form-control" name="video_link" id="video_link" placeholder="Paste here...." rows="8">{{ old('video_link') }}</textarea>
+
+                                <input name="video_link" id="video_link" class="form-control"
+                                placeholder="Write here....." type="text"
+                                value="{{ old('video_link') }}">
+
+                                {{-- <textarea class="form-control" name="video_link" id="video_link" placeholder="Paste here...." rows="8">{{ old('video_link') }}</textarea> --}}
                             </div>
                         </div>
 

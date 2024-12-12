@@ -8,6 +8,7 @@
     
 @endpush
 
+{{-- @section('cart', 'active') --}}
 
 @section('body-content')
 
@@ -110,11 +111,11 @@
 
                                                             @foreach ($course_videos as $row)
                                                                 <li>
-                                                                    <span>
+                                                                    <span style="display: flex;align-items: center;">
                                                                         <i class='bx bx-video' style="font-size: 24px;"></i>  {{ $row->video_title }}
                                                                     </span> 
 
-                                                                    <span>{{ $row->video_timer }} <i class='bx bx-time-five' style="font-size: 24px;"></i>
+                                                                    <span style="display: flex;align-items: center;">{{ $row->video_timer }} <i class='bx bx-time-five' style="font-size: 24px;"></i>
                                                                     </span>
                                                                 </li>
                                                             @endforeach
@@ -155,10 +156,10 @@
                 <div class="course-sidebar sticky-widget">
                     <h4 class="sidebar-title">Course Information</h4>
                     <ul class="course-sidebar-list">
-                        <li><i class='bx bx-home' style="font-size: 20px;"></i>Instructor: <span>Kevin Perry</span></li>
-                        <li><i class='bx bx-book-bookmark' style="font-size: 20px;"></i>Lessons: <span>{{ $course->lesson }}</span></li>
-                        <li><i class='bx bx-time-five' style="font-size: 20px;"></i>Duration: <span>{{ $course->duration }}</span></li>
-                        <li><i class='bx bx-purchase-tag-alt' style="font-size: 20px;"></i>Course level: <span>{{ $course->course_level }}</span></li>
+                        <li style="display: flex;align-items: center;"><i class='bx bx-home' style="font-size: 20px;"></i>Instructor: <span>Kevin Perry</span></li>
+                        <li style="display: flex;align-items: center;"><i class='bx bx-book-bookmark' style="font-size: 20px;"></i>Lessons: <span>{{ $course->lesson }}</span></li>
+                        {{-- <li style="display: flex;align-items: center;"><i class='bx bx-time-five' style="font-size: 20px;"></i>Duration: <span>{{ $course->duration }}</span></li> --}}
+                        <li style="display: flex;align-items: center;"><i class='bx bx-purchase-tag-alt' style="font-size: 20px;"></i>Course level: <span>{{ $course->course_level }}</span></li>
                     </ul>
                 </div>
             </div>

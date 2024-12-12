@@ -20,23 +20,25 @@
                 <div class="top-bar-right">
                     <div class="register-box">
                         @if ( Auth::check() )
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                              {{ Auth::user()->name }}
-                            </button>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="{{ route('user.dashboard') }}">User Dashboard</a></li>
-                              <li><a class="dropdown-item" href="{{ route('user.dashboard') }}">View Profile</a></li>
-                              <li>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                        <button class="dropdown-item" type="submit" >
-                                            {{ __('Log Out') }}
-                                        </button>
-                                    </form>
-                              </li>
-                            </ul>
-                          </div>
+                            @if ( Auth::user()->role == 2 )
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ Auth::user()->name }}
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{ route('user.dashboard') }}">User Dashboard</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('user.dashboard') }}">View Profile</a></li>
+                                    <li>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                                <button class="dropdown-item" type="submit" >
+                                                    {{ __('Log Out') }}
+                                                </button>
+                                            </form>
+                                    </li>
+                                    </ul>
+                                </div>
+                            @endif
                         @else
                             <div class="icon"><i class="fa-regular fa-user"></i></div>
                             <a href="{{ route('login') }}">Login </a>
@@ -96,7 +98,7 @@
                 <div class="header-menu-wrap">
                     <div class="mobile-menu-items">
                         <ul class="sub-menu">
-                                    <li class="active">
+                                    <li class="@yield('home')">
                                         <a href="{{ route('home') }}">Home</a>
                                         {{-- <ul>
                                             <li><a href="index.html">Main Demo</a></li>
@@ -114,7 +116,7 @@
                                         </ul>
                                     </li> --}}
 
-                                    <li>
+                                    <li class="@yield('cart')">
                                         <a href="{{ route('cart') }}">Cart</a>
                                         {{-- <ul>
                                             <li><a href="shop.html">Shop</a></li>
@@ -145,7 +147,9 @@
                                             <li><a href="blog-details.html">Blog Details</a></li>
                                         </ul>
                                     </li> --}}
-                                    <li><a href="{{ route('contact') }}">Contact</a></li>
+                                    <li class="@yield('contact')">
+                                        <a href="{{ route('contact') }}">Contact</a>
+                                    </li>
                                 </ul>
                     </div>
                 </div>

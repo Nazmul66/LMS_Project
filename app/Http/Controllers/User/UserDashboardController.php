@@ -21,12 +21,13 @@ class UserDashboardController extends Controller
      */
     public function dashboard()
     {
-        $order   = Order::where('user_id', Auth::user()->id)->first();
         $courses = Cart::leftJoin('courses', 'courses.id', 'carts.course_id')
-                   ->leftJoin('users', 'users.id', 'carts.user_id')
-                   ->select('courses.*')
-                   ->where('carts.order_id', $order->order_id)
-                   ->get();
+                    ->leftJoin('users', 'users.id', 'carts.user_id')
+                    ->leftJoin('orders', 'orders.order_id', 'carts.order_id')
+                    ->select('courses.*','orders.status')
+                    ->where('users.id', Auth::user()->id)
+                    ->where('orders.status', 1)
+                    ->get();
         return view('user.pages.dashboard', compact('courses'));
     }
 

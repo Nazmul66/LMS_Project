@@ -26,12 +26,14 @@
                     <thead>
                         <tr>
                             <th>#SL.</th>
+                            <th>Order Id</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Total Product</th>
                             <th>Total Amount</th>
                             <th>Payment Method</th>
+                            <th>Status</th>
                             <th>Date</th>
                             <th>Action</th>
                         </tr>
@@ -41,6 +43,7 @@
                         @foreach ($orders as $key => $row)
                             <tr>
                                 <th scope="row">{{ $key + 1 }}</th>
+                                <th >{{ $row->order_id }}</th>
                                 <td>
                                     <span style="white-space: nowrap;">
                                         {{ $row->name }}
@@ -62,6 +65,16 @@
                                     <span class="text-dark">{{ $row->payment_method }}</span>
                                 </td>
                                 <td>
+                                    @if ( $row->status === 1 )
+                                        <span class="text-success">Paid</span>
+                                    @elseif( $row->status === 2 )
+                                        <span class="text-warning">Pending</span>
+                                    @else
+                                        <span class="text-danger">Cancelled</span>
+                                    @endif
+
+                                </td>
+                                <td>
                                     <span class="text-dark"
                                         style="white-space: nowrap;">{{ date('Y-m-d', strtotime($row->created_at)) }}</span>
                                 </td>
@@ -77,6 +90,14 @@
                                                     data-bs-target="#view_modal{{ $row->id }}" style="font-size: 16px;"><i
                                                         class="fas fa-eye"></i> View</button>
                                             </li>
+
+                                            @if ( $row->status == 2 )
+                                                <li>
+                                                    <a href="{{ route('admin.order.update', $row->order_id) }}" class="dropdown-item" style="font-size: 16px;">
+                                                        <i class="fas fa-check-circle text-success"></i> Confirm
+                                                    </a>
+                                                </li>
+                                            @endif
                                         </ul>
                                     </div>
                                 </td>

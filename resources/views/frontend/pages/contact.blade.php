@@ -8,6 +8,8 @@
     
 @endpush
 
+@section('contact', 'active')
+
 @section('body-content')
 
 <!-- header-area-start -->
@@ -42,8 +44,15 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-12">
+                                    {{-- <div class="form-item">
+                                        <div class="nice-select select-control form-control country" tabindex="0"><span class="current">Select Subject</span>
+                                            <ul class="list"><li data-value="" class="option selected focus">Select Subject</li><li data-value="vdt" class="option">Plan One</li><li data-value="can" class="option">Plan Two</li><li data-value="uk" class="option">Plan Three</li></ul>
+                                        </div>
+                                    </div> --}}
+
                                     <div class="form-item">
-                                        <div class="nice-select select-control form-control country" tabindex="0"><span class="current">Select Subject</span><ul class="list"><li data-value="" class="option selected focus">Select Subject</li><li data-value="vdt" class="option">Plan One</li><li data-value="can" class="option">Plan Two</li><li data-value="uk" class="option">Plan Three</li></ul></div>
+                                        <input type="text" id="phone" name="phone" class="form-control" placeholder="Your Phone">
+                                        {{-- <div class="icon"><i class="fa-sharp fa-regular fa-envelope"></i></div> --}}
                                     </div>
                                 </div>
                             </div>

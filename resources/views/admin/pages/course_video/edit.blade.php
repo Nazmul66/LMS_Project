@@ -60,16 +60,30 @@
                             </div>
                         </div>
 
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="video_link" class="form-label">Video Link <span
                                         class="text-danger">*</span></label>
-                                <textarea class="form-control" name="video_link" id="video_link" placeholder="Paste here...." rows="8">{{ old('video_link', $course_video->video_link) }}</textarea>
+
+                                <input name="video_link" id="video_link" class="form-control"
+                                placeholder="Write here....." type="text"
+                                value="{{ old('video_link', $course_video->video_link) }}">
+
+                                {{-- <textarea class="form-control" name="video_link" id="video_link" placeholder="Paste here...." rows="8">{{ old('video_link', $course_video->video_link) }}</textarea> --}}
                             </div>
                         </div>
 
                         <div class="video_show">
-                              {!! $course_video->video_link !!}
+                              {{-- {!! $course_video->video_link !!} --}}
+                              <iframe 
+                                width="560" 
+                                height="315" 
+                                src="https://www.youtube.com/watch?v={{ $course_video->video_link }}" 
+                                title="YouTube video player" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                            </iframe>
                         </div>
 
                         <div>

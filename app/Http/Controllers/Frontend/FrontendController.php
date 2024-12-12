@@ -152,7 +152,7 @@ class FrontendController extends Controller
         $order->total_product   = $request->total_product;
         $order->total_amount    = $request->total_amount;
         $order->payment_method  = $request->payment_method;
-        $order->status          = 1;   // pending
+        $order->status          = 2;   // pending
         $order->save();
 
 
@@ -187,14 +187,20 @@ class FrontendController extends Controller
         return redirect()->route('order.success', $order->order_id);
     }
 
-    public function order_success(string $orderId)
+    public function order_success(Request $request, string $orderId)
     {
-        // dd($orderId);
+        // Check if the order success page for this order has already been visited
+        if (session()->has('visited_order_success') && session('visited_order_success') === $orderId) {
+            Toastr::error('Cannot go back to the order success page', 'Error', ["positionClass" => "toast-top-right"]);
+            return redirect()->route('home');
+        }
+
+        session(['visited_order_success' => $orderId]);
+
         $data['order'] =  Order::leftJoin('users', 'users.id', 'orders.user_id')
                             ->select('users.*','orders.order_id','orders.total_product','orders.total_amount','orders.payment_method')
                             ->where('orders.order_id', $orderId)
                             ->first();
-        // return view('frontend.pages.order-success', $data);
         return view('frontend.pages.order-success', $data);
     }
 

@@ -17,9 +17,9 @@
 <div class="row">
     <div class="col-md-12">
         <div class="_14d25">
-            <div class="row">
+            <div class="row">     
 
-                @foreach ($courses as $row)
+                @forelse ($courses as $row)
                     <div class="col-lg-3 col-md-4">
                         <div class="fcrse_1 mt-30">
                             <a href="{{ route('user.course.details', $row->id) }}" class="fcrse_img">
@@ -40,7 +40,7 @@
                                     {{-- <span class="vdt14">109k views</span> --}}
                                     <span class="vdt14">{{ $row->created_at->diffForHumans() }}</span>
                                 </div>
-                                <a href="{{ route('user.course.details', $row->id) }}" class="crse14s">{{ $row->title }}</a>
+                                <a href="{{ route('user.course.details', $row->id) }}" class="crse14s">{{ Str::substr($row->title, 0, 40) }}...</a>
                                 {{-- <a href="#" class="crse-cate">Web Development | Python</a> --}}
                                 <div class="auth1lnkprce">
                                     <p class="cr1fot">By <span>{{ $row->name }}</span></p>
@@ -50,7 +50,12 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+
+                @empty
+                    <div class="alert alert-success text-center" role="alert">
+                          There's no course here
+                    </div>
+                @endforelse
  
 
                 {{-- <div class="col-lg-3 col-md-4">

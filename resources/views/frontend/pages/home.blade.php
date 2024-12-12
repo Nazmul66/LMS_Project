@@ -8,6 +8,8 @@
     
 @endpush
 
+@section('home', 'active')
+
 @section('body-content')
 
 <!-- header-area-start -->
@@ -31,10 +33,10 @@
                         <h2 class="section-title wow fade-in-bottom" data-wow-delay="400ms">World’s Only E-School <br>Built by <span>Industry Leaders, <br>for Future Leaders</span></h2>
                     </div>
                     <h4 class="bottom-title">Tech-boosted practical-first approach</h4>
-                    <div class="hero-btn-wrap">
+                    {{-- <div class="hero-btn-wrap">
                         <a href="contact.html" class="ed-primary-btn active">Apply Now <span><i class="fa-solid fa-plus"></i></span></a>
-                        {{-- <a href="contact.html" class="ed-primary-btn">Download  Brochure <span><i class="fa-solid fa-plus"></i></span></a> --}}
-                    </div>
+                        <a href="contact.html" class="ed-primary-btn">Download  Brochure <span><i class="fa-solid fa-plus"></i></span></a>
+                    </div> --}}
                 </div>
             </div>
             <div class="col-lg-6 col-md-12">
@@ -45,10 +47,10 @@
                         <img src="{{ asset('frontend/assets/img/images/hero-img-2.png') }}" alt="hero">
                     </div>
                     <ul class="hero-contact-list">
-                        <li><a href="#"><i class="fa-solid fa-ellipsis"></i></a></li>
-                        <li><a href="#"><i class="fa-regular fa-microphone-slash"></i></a></li>
-                        <li><a href="#"><i class="fa-regular fa-phone"></i></a></li>
-                        <li><a href="#"><i class="fa-regular fa-video"></i></a></li>
+                        <li><a href="javascript:void();"><i class="fa-solid fa-ellipsis"></i></a></li>
+                        <li><a href="javascript:void();"><i class='bx bx-microphone-off'></i></a></li>
+                        <li><a href="javascript:void();"><i class='bx bx-phone-call' ></i></a></li>
+                        <li><a href="javascript:void();"><i class='bx bx-video'></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -70,7 +72,7 @@
                     <div class="content">
                         <h3 class="title">Accessibility & Flexibility</h3>
                         <p>Online education should be accessible to learners from diverse backgrounds, offering the flexibility to study anytime.</p>
-                        <a href="about.html" class="ed-primary-btn">Learn More <i class="fa-sharp fa-regular fa-arrow-right"></i></a>
+                        {{-- <a href="about.html" class="ed-primary-btn">Learn More <i class="fa-sharp fa-regular fa-arrow-right"></i></a> --}}
                     </div>
                 </div>
             </div>
@@ -80,7 +82,7 @@
                     <div class="content">
                         <h3 class="title">Personalized Learning </h3>
                         <p>Online education should be accessible to learners from diverse backgrounds, offering the flexibility to study anytime.</p>
-                        <a href="about.html" class="ed-primary-btn">Learn More <i class="fa-sharp fa-regular fa-arrow-right"></i></a>
+                        {{-- <a href="about.html" class="ed-primary-btn">Learn More <i class="fa-sharp fa-regular fa-arrow-right"></i></a> --}}
                     </div>
                 </div>
             </div>
@@ -90,7 +92,7 @@
                     <div class="content">
                         <h3 class="title">High-Quality Instruction</h3>
                         <p>Online education should be accessible to learners from diverse backgrounds, offering the flexibility to study anytime.</p>
-                        <a href="about.html" class="ed-primary-btn">Learn More <i class="fa-sharp fa-regular fa-arrow-right"></i></a>
+                        {{-- <a href="about.html" class="ed-primary-btn">Learn More <i class="fa-sharp fa-regular fa-arrow-right"></i></a> --}}
                     </div>
                 </div>
             </div>
@@ -142,9 +144,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="about-btn wow fade-in-bottom" data-wow-delay="600ms">
+                    {{-- <div class="about-btn wow fade-in-bottom" data-wow-delay="600ms">
                         <a href="contact.html" class="ed-primary-btn">Join With Us</a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -854,7 +856,7 @@
 </section>
 <!-- ./ course-section -->
 
-<section class="features-event pt-120 pb-120">
+{{-- <section class="features-event pt-120 pb-120">
     <div class="container">
         <div class="section-heading text-center">
             <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>Our Upcoming Events</h4>
@@ -911,7 +913,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!-- ./ features-event -->
 
 <section class="testimonial-section-3 pt-120 pb-120">
@@ -948,9 +950,10 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="swiper-arrow">
-                        <div class="swiper-nav swiper-next"><i class="fa-regular fa-arrow-left"></i></div>
-                        <div class="swiper-nav swiper-prev"><i class="fa-regular fa-arrow-right"></i></div>
+                        <div class="swiper-nav swiper-next"><i class='bx bx-left-arrow-alt' style="font-size: 30px;"></i></div>
+                        <div class="swiper-nav swiper-prev"><i class='bx bx-right-arrow-alt' style="font-size: 30px;"></i></div>
                     </div>
                 </div>
             </div>
@@ -1043,7 +1046,7 @@
 </section>
 <!-- ./ team-section -->
 
-<section class="blog-section bg-grey pt-120 pb-120">
+{{-- <section class="blog-section bg-grey pt-120 pb-120">
     <div class="container">
         <div class="section-heading text-center">
             <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>News & Blogs</h4>
@@ -1124,10 +1127,10 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!-- ./ blog-section -->
 
-<section class="insta-section pt-120 pb-120 overflow-hidden">
+{{-- <section class="insta-section pt-120 pb-120 overflow-hidden">
     <div class="section-heading text-center">
         <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>Follow Us</h4>
         <h2 class="section-title wow fade-in-bottom" data-wow-delay="400ms">Follow EdCare On Instagram</h2>
@@ -1200,7 +1203,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!-- ./ insta-section -->
 
 @endsection

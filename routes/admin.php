@@ -33,9 +33,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth','Is
     // Order
     Route::group(['prefix' => 'order', 'as' => 'order.'], function () {
         Route::get('/', [OrderController::class, 'index'])->name('index');
-        Route::get('/edit/{id}', [OrderController::class, 'edit'])->name('edit');
-        Route::post('/update/{id}', [OrderController::class, 'update'])->name('update');
-        Route::get('/delete/{id}', [OrderController::class, 'delete'])->name('delete');
+        Route::get('/update/{order_id}', [OrderController::class, 'update'])->name('update');
     });
 
 
