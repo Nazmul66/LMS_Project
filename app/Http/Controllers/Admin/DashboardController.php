@@ -5,13 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Alarm;
+use App\Models\Course;
 use App\Models\NotificationTemplate;
+use App\Models\Order;
 use App\Models\Transaction;
 use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -22,7 +25,9 @@ class DashboardController extends Controller
     public function dashboard()
     {
         $data['title'] = 'Dashboard';
-        return view('admin.index',compact('data'));
+        $data['total_courses'] = DB::table('courses')->orderBy('id', 'desc')->get();
+        $data['total_orders']  = DB::table('orders')->where('status', 1)->get();
+        return view('admin.index', $data);
     }
 
 

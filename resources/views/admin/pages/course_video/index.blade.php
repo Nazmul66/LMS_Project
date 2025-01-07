@@ -4,6 +4,8 @@
     {{ $title }}
 @endsection
 
+@section('course', 'mm-active')
+
 @push('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
 @endpush
@@ -14,7 +16,7 @@
         <h4 class="mb-sm-0 font-size-18">{{ $title }}</h4>
         
         <div class="">
-            <a href="{{ route('admin.course_module.index', $course_module_id) }}" class="btn btn-primary waves-effect waves-light">Back to course module</a>
+            <a href="{{ route('admin.course.index') }}" class="btn btn-primary waves-effect waves-light">Back to course module</a>
             <a href="{{ route('admin.course_video.create', $course_module_id) }}" class="btn btn-primary waves-effect waves-light">Add New</a>
         </div>
     </div>

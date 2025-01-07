@@ -98,7 +98,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
+                            {{-- <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="duration" class="form-label">Course Duration <span
                                             class="text-danger">*</span></label>
@@ -107,7 +107,7 @@
                                         placeholder="Write here....." type="text"
                                         value="{{ old('duration') }}">
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="col-md-4">
                                 <div class="mb-3">

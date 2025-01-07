@@ -35,6 +35,27 @@
                     </a>
                 </li>
 
+                <li class="@yield('banner')">
+                    <a href="{{ route('admin.banner.index') }}" class="waves-effect">
+                        <i class='bx bxs-bar-chart-alt-2'></i>
+                        <span key="t-contacts">Banner</span>
+                    </a>
+                </li>
+
+                <li class="@yield('testimonial')">
+                    <a href="{{ route('admin.testimonials.index') }}" class="waves-effect">
+                        <i class='bx bx-message-rounded-detail'></i>
+                        <span key="t-brands">Testimonial</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('admin.contact.index') }}" class="waves-effect">
+                        <i class="bx bxs-user-detail"></i>
+                        <span key="t-contacts">Contacts</span>
+                    </a>
+                </li>
+
                 <li>
                     <a href="{{ route('admin.profile.index') }}" class="waves-effect">
                         <i class='bx bxs-user'></i>

@@ -19,13 +19,13 @@
     <div class="row">
         <div class="col-xl-12">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="card mini-stats-wid">
                         <div class="card-body">
                             <div class="d-flex">
                                 <div class="flex-grow-1">
-                                    <p class="text-muted fw-medium">Total Transaction</p>
-                                    <h4 class="mb-0">0</h4>
+                                    <p class="text-muted fw-medium">Total Course</p>
+                                    <h4 class="mb-0">{{ $total_courses->count() ?? 0}}</h4>
                                 </div>
 
                                 <div class="flex-shrink-0 align-self-center">
@@ -40,7 +40,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                {{-- <div class="col-md-4">
                     <div class="card mini-stats-wid">
                         <div class="card-body">
                             <div class="d-flex">
@@ -59,7 +59,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 {{-- <div class="col-md-3">
                     <div class="card mini-stats-wid">
@@ -82,13 +82,13 @@
                     </div>
                 </div> --}}
 
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="card mini-stats-wid">
                         <div class="card-body">
                             <div class="d-flex">
                                 <div class="flex-grow-1">
-                                    <p class="text-muted fw-medium">Total Invoice</p>
-                                    <h4 class="mb-0">17</h4>
+                                    <p class="text-muted fw-medium">Total Order</p>
+                                    <h4 class="mb-0">{{ $total_orders->count() }}</h4>
                                 </div>
 
                                 <div class="flex-shrink-0 align-self-center">

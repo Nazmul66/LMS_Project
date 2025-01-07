@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\CourseModuleController;
 use App\Http\Controllers\Admin\CourseVideoController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\TestimonialController;
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth','IsAdmin']], function () {
 
@@ -29,6 +31,25 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth','Is
         Route::post('/toggle-status', [ContactController::class, 'toggleStatus'])->name('toggleStatus');
     });
 
+    // Testimonials
+    Route::group(['prefix' => 'testimonials', 'as' => 'testimonials.'], function () {
+        Route::get('/', [TestimonialController::class, 'index'])->name('index');
+        Route::get('/create', [TestimonialController::class, 'create'])->name('create');
+        Route::post('/store', [TestimonialController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [TestimonialController::class, 'edit'])->name('edit');
+        Route::post('/update/{id}', [TestimonialController::class, 'update'])->name('update');
+        Route::post('/section-update/{id}', [TestimonialController::class, 'sectionupdate'])->name('section.update');
+        Route::get('/delete/{id}', [TestimonialController::class, 'delete'])->name('delete');
+    });
+
+
+    // Banner
+    Route::group(['prefix' => 'banner', 'as' => 'banner.'], function () {
+        Route::get('/', [BannerController::class, 'index'])->name('index');
+        Route::get('{id}/view', [BannerController::class, 'view'])->name('view');
+        Route::post('{id}/update', [BannerController::class, 'update'])->name('update');
+        Route::get('{id}/delete', [BannerController::class, 'delete'])->name('delete');
+    });
 
     // Order
     Route::group(['prefix' => 'order', 'as' => 'order.'], function () {

@@ -252,11 +252,11 @@
                                         <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                             <div class="accordion-body">
                                                  <div class="mb-3 mt-3">
-                                                    <input type="text" class="form-control" name="payment_number" placeholder="Payment Number">
+                                                    <input type="text" class="form-control" name="payment_number" placeholder="Payment Number" required>
                                                  </div>
 
                                                 <div class="mb-3">
-                                                    <input type="text" class="form-control" name="transaction_id" placeholder="Transaction Id">
+                                                    <input type="text" class="form-control" name="transaction_id" placeholder="Transaction Id" required>
                                                 </div>
                                             </div>
                                     </div>

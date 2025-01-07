@@ -27,18 +27,20 @@
                     <h2 class="title mb-0">Leave A Reply</h2>
                     <p class="mb-30 mt-10">Fill-up The Form and Message us of your amazing question</p>
                     <div class="request-form">
-                        <form action="mail.php" method="post" id="ajax_contact" class="form-horizontal">
+                        <form action="{{ route('contact.post') }}" method="post" class="form-horizontal">
+                            @csrf
+
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <div class="form-item">
-                                        <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Your Name">
-                                        <div class="icon"><i class="fa-regular fa-user"></i></div>
+                                        <input type="text" id="fullname" name="name" class="form-control" placeholder="Your Name">
+                                        {{-- <div class="icon"><i class="fa-regular fa-user"></i></div> --}}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-item">
                                         <input type="email" id="email" name="email" class="form-control" placeholder="Your Email">
-                                        <div class="icon"><i class="fa-sharp fa-regular fa-envelope"></i></div>
+                                        {{-- <div class="icon"><i class="fa-sharp fa-regular fa-envelope"></i></div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -51,11 +53,17 @@
                                     </div> --}}
 
                                     <div class="form-item">
-                                        <input type="text" id="phone" name="phone" class="form-control" placeholder="Your Phone">
+                                       <input type="text" id="phone" name="phone" class="form-control" placeholder="Your Phone">
                                         {{-- <div class="icon"><i class="fa-sharp fa-regular fa-envelope"></i></div> --}}
-                                    </div>
+                                    </div> 
+
+                                    <div class="form-item">
+                                        <input type="text" id="subject" name="subject" class="form-control" placeholder="Subject">
+                                         {{-- <div class="icon"><i class="fa-sharp fa-regular fa-envelope"></i></div> --}}
+                                     </div> 
                                 </div>
                             </div>
+
                             <div class="form-group row">
                                 <div class="col-md-12">
                                     <div class="form-item message-item">
@@ -64,8 +72,9 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="submit-btn">
-                                <button id="submit" class="ed-primary-btn" type="submit">Submit Message</button>
+                                <button class="ed-primary-btn" type="submit">Submit Message</button>
                             </div>
                         </form>
                     </div>

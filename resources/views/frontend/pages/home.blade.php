@@ -16,6 +16,7 @@
 @include('frontend.include.header')
 
 
+
 <section class="hero-section hero-4 overflow-hidden">
     <div class="shapes">
         <div class="shape shape-1"><img src="{{ asset('frontend/assets/img/shapes/hero-shape-16.png') }}" alt="shape"></div>
@@ -29,10 +30,10 @@
             <div class="col-lg-6 col-md-12">
                 <div class="hero-content hero-content-3 hero-content-4">
                     <div class="section-heading mb-20">
-                        <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>Welcome to Online Eduaction</h4>
-                        <h2 class="section-title wow fade-in-bottom" data-wow-delay="400ms">World’s Only E-School <br>Built by <span>Industry Leaders, <br>for Future Leaders</span></h2>
+                        <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>{{ $banner->title }}</h4>
+                        <h2 class="section-title wow fade-in-bottom" data-wow-delay="400ms">{{ $banner->subtitle }} </h2>
                     </div>
-                    <h4 class="bottom-title">Tech-boosted practical-first approach</h4>
+                    <h4 class="bottom-title">{{ $banner->content }}</h4>
                     {{-- <div class="hero-btn-wrap">
                         <a href="contact.html" class="ed-primary-btn active">Apply Now <span><i class="fa-solid fa-plus"></i></span></a>
                         <a href="contact.html" class="ed-primary-btn">Download  Brochure <span><i class="fa-solid fa-plus"></i></span></a>
@@ -44,20 +45,22 @@
                     <div class="img-shape"><img src="{{ asset('frontend/assets/img/shapes/hero-img-shape-3.png') }}" alt="shape"></div>
                     <div class="img-shape-2"><img src="{{ asset('frontend/assets/img/shapes/hero-img-shape-4.png') }}" alt="shape"></div>
                     <div class="hero-img">
-                        <img src="{{ asset('frontend/assets/img/images/hero-img-2.png') }}" alt="hero">
+                        <img src="{{ asset($banner->image_path) }}" alt="hero">
                     </div>
-                    <ul class="hero-contact-list">
+                    {{-- <ul class="hero-contact-list">
                         <li><a href="javascript:void();"><i class="fa-solid fa-ellipsis"></i></a></li>
                         <li><a href="javascript:void();"><i class='bx bx-microphone-off'></i></a></li>
                         <li><a href="javascript:void();"><i class='bx bx-phone-call' ></i></a></li>
                         <li><a href="javascript:void();"><i class='bx bx-video'></i></a></li>
-                    </ul>
+                    </ul> --}}
                 </div>
             </div>
         </div>
     </div>
 </section>
 <!-- ./ hero-section -->
+
+
 
 <section class="feature-section-4 pt-120 pb-120">
     <div class="container">
@@ -936,18 +939,21 @@
                 <div class="testi-carousel-wrap-2">
                     <div class="testi-carousel-2 swiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="testi-item-3">
-                                    <h3 class="title">Interactive Learning Experience</h3>
-                                    <p>"I've been thoroughly impressed with how engaging and interactive the courses are on this. The use of multimedia, quizzes, and live sessions makes learning enjoyable and keeps me motivated.”</p>
-                                    <div class="testi-author">
-                                        <div class="testi-author-img">
-                                            <img src="{{ asset('frontend/assets/img/images/testi-author-3.png') }}" alt="testi">
+
+                           @foreach ($testimonials as $row)
+                                <div class="swiper-slide">
+                                    <div class="testi-item-3">
+                                        <h3 class="title">Interactive Learning Experience</h3>
+                                        <p>{{ $row->client_desc }}</p>
+                                        <div class="testi-author">
+                                            <div class="testi-author-img">
+                                                <img src="{{ asset($row->client_image) }}" alt="{{ $row->client_name }}">
+                                            </div>
+                                            <h4 class="name">{{ $row->client_name }} <span>{{ $row->client_designation }}</span></h4>
                                         </div>
-                                        <h4 class="name">Markus Adina <span>Writer</span></h4>
                                     </div>
                                 </div>
-                            </div>
+                           @endforeach
                         </div>
                     </div>
 

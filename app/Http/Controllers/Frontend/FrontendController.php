@@ -7,12 +7,15 @@ use App\Mail\OrderSuccessMail;
 use Illuminate\Http\Request;
 use App\Models\Address;
 use App\Models\Cart;
+use App\Models\Contact;
 use App\Models\Course;
 use App\Models\CourseModule;
 use App\Models\Order;
+use App\Models\Testimonial;
 use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class FrontendController extends Controller
@@ -22,7 +25,9 @@ class FrontendController extends Controller
      */
     public function home()
     {
-        $data['courses'] = Course::where('status', 1)->get();
+        $data['banner']       = DB::table('homepage_sections')->where('url_slug', 'banner-section')->where('is_active', 1)->first();
+        $data['courses']      = Course::where('status', 1)->get();
+        $data['testimonials'] = Testimonial::where('status', 1)->get();
         return view('frontend.pages.home', $data);
     }
 
@@ -37,6 +42,41 @@ class FrontendController extends Controller
     public function contact()
     {
         return view('frontend.pages.contact');
+    }
+
+
+    public function contact_post(Request $request)
+    {
+        // dd($request->all());
+        $request->validate([
+            'name'     => 'required|max:255',
+            'email'    => 'required|max:255',
+            'message'  => 'required',
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $contact                     = new Contact();
+
+            $contact->name               = $request->name;
+            $contact->email              = $request->email;
+            $contact->phone              = $request->phone;
+            $contact->subject            = $request->subject;
+            $contact->message            = $request->message;
+            $contact->status             = 1;
+        }
+        catch (\Exception $e) {
+            DB::rollback();
+            // dd($e);
+            Toastr::error('Oops! Something went wrong. Please try again later.', 'Error', ["positionClass" => "toast-top-right"]);
+            return back();
+        }
+
+        $contact->save();
+
+        DB::commit();
+        Toastr::success('Thank you for reaching out! We appreciate your feedback and will respond as quickly as possible', 'Success', ["positionClass" => "toast-top-right"]);
+        return redirect()->back();
     }
 
     /**
@@ -183,7 +223,7 @@ class FrontendController extends Controller
                             ->where('orders.order_id', $order->order_id)
                             ->first();
         
-        Mail::to($request->email)->send(new OrderSuccessMail($mail_order));
+        Mail::to($user->email)->send(new OrderSuccessMail($mail_order));
 
         Toastr::success('Order Successfully Done', 'Success', ["positionClass" => "toast-top-right"]);
         return redirect()->route('order.success', $order->order_id);

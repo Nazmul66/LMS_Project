@@ -28,7 +28,7 @@
                         <input type="hidden" name="course_module_id" value="{{ $course_module_id }}">
 
                         <div class="row align-items-end">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="mb-3">
                                     <label for="video_title" class="form-label">Video Title <span
                                             class="text-danger">*</span></label>
@@ -38,7 +38,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-12">
                                 <div class="mb-3">
                                     <label for="video_timer" class="form-label">Video Timer <span
                                             class="text-danger">*</span></label>
@@ -46,10 +46,10 @@
                                         placeholder="Write here....." type="text"
                                         value="{{ old('video_timer', $course_video->video_timer) }}">
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="mb-3">
                                 <label for="status" class="form-label">Status <span
                                         class="text-danger">*</span></label>
@@ -60,9 +60,9 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="mb-3">
-                                <label for="video_link" class="form-label">Video Link <span
+                                <label for="video_link" class="form-label">Video Code <span
                                         class="text-danger">*</span></label>
 
                                 <input name="video_link" id="video_link" class="form-control"
@@ -74,16 +74,10 @@
                         </div>
 
                         <div class="video_show">
-                              {{-- {!! $course_video->video_link !!} --}}
-                              <iframe 
-                                width="560" 
-                                height="315" 
-                                src="https://www.youtube.com/watch?v={{ $course_video->video_link }}" 
-                                title="YouTube video player" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                allowfullscreen>
-                            </iframe>
+                              <iframe width="640" height="360"
+                                src="https://www.youtube.com/embed/{{ $course_video->video_link }}?modestbranding=1&rel=0&showinfo=0&iv_load_policy=3" frameborder="0"
+                                allow="autoplay; encrypted-media" allowfullscreen>
+                            </iframe>
                         </div>
 
                         <div>

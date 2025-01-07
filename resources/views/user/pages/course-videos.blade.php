@@ -28,6 +28,53 @@
     <link href="{{ asset('user/vendor/bootstrap-select/docs/docs/dist/css/bootstrap-select.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('user/vendor/semantic/semantic.min.css') }}">
 
+    <style>
+        .html5-endscreen {
+            cursor: default;
+            overflow: hidden;
+            z-index: 0;
+            display: none !important;
+        }
+
+        .ytp-chrome-top-buttons {
+            white-space: nowrap;
+            visibility: hidden;
+            display: none;
+            opacity: 0px;
+        }
+
+        .ytp-impression-link-content {
+            visibility: hidden;
+            display: none;
+            opacity: 0px;
+        }
+
+        .ytp-copylink-title {
+            margin: auto;
+            width: 36px;
+            height: 36px;
+            display: none !important;
+            opacity: 0px;
+            visibility: hidden;
+        }
+
+        .ytp-chrome-top {
+            display: -webkit-flex;
+            display: -webkit-box;
+            display: flex;
+            -webkit-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+            -webkit-box-pack: end;
+            -webkit-justify-content: flex-end;
+            justify-content: flex-end;
+            left: 12px;
+            right: 12px;
+            top: 0;
+            z-index: 58;
+            display: none;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -203,7 +250,11 @@
             <div class="lecture-content-inner mt-35">
                 <div class="lecture-content-inner-video">
                     <div class="video-responsive">
-                            {!! $course_video_first->video_link !!}
+                        <iframe width="640" height="360"
+                            src="https://www.youtube.com/embed/{{ $course_video_first->video_link }}?modestbranding=1&rel=0&showinfo=0&iv_load_policy=3" frameborder="0"
+                            allow="autoplay; encrypted-media" allowfullscreen>
+                        </iframe>
+                            {{-- {!! $course_video_first->video_link !!} --}}
                              {{-- <iframe src="https://www.youtube.com/embed/Ohe_JzKksvA" class="lec-responsive-width"></iframe> --}}
                     </div>
                 </div>

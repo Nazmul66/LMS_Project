@@ -18,6 +18,7 @@ Route::controller(FrontendController::class)->group(function () {
         Route::get('/', 'home')->name('home');
         Route::get('/course-details/{id}', 'course_details')->name('course-details');
         Route::get('/contact', 'contact')->name('contact');
+        Route::post('/contact/post', 'contact_post')->name('contact.post');
         Route::get('/cart', 'cart')->name('cart');
         Route::post('/cart-store', 'cart_store')->name('cart.store');
         Route::get('/cart-delete/{id}', 'cart_delete')->name('cart.delete');

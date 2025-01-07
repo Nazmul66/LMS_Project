@@ -36,7 +36,7 @@
 
                         <h2 class="title">{{ $course->title }}</h2>
                         <ul class="course-details-list">
-                            <li><img src="{{ asset('frontend/assets/img/service/course-details-author.png') }}" alt="author"><span>Instructor:</span> {{ $course->name }}</li>
+                            <li><img src="{{ asset( $course->instructor_image ) }}" alt="author"><span>Instructor:</span> {{ $course->name }}</li>
                             {{-- <li><i class="fa-solid fa-tags"></i>Web Development</li> --}}
 
                             <li><i class="fa-light fa-calendar"></i>{{ date('d M, Y', strtotime($course->created_at))  }}</li>
@@ -81,13 +81,6 @@
 
                                     {!! $course->description !!}
 
-                                    {{-- <h3 class="title">Description</h3>
-                                    <p class="mb-30">Rapidiously develop parallel e-markets via worldwide paradigms. Quickly synergize cutting-edge scenarios and professional results. Assertively deliver cross-media results before client-centric results. Uniquely initiate intuitive communities through process-centric internal or "organic" sources. Energistically reinvent distinctive value via parallel services.
-                                        Phosfluorescently deploy extensive paradigms vis-a-vis cross-unit manufactured products. Uniquely coordinate impactful services whereas team building e-services. Globally grow multimedia based benefits vis-a-vis client-based niches.
-                                    </p>
-                                    <p class="mb-40">Professionally expedite synergistic technology without out-of-the-box human capital. Enthusiastically coordinate state of the art leadership after professional manufactured products. Distinctively enhance future-proof e-services whereas functionalized partnerships. Quickly streamline focused paradigms via orthogonal "outside the box" thinking. Rapidiously administrate 2.0 total linkage for cross-platform channels.</p>
-                                    <h3 class="title">What Will You Learn?</h3>
-                                    <p class="mb-0">Quickly synergize cutting-edge scenarios and professional results. Assertively deliver cross-media results before client-centric results. Uniquely initiate intuitive communities through process-centric internal or "organic" sources. Energistically reinvent distinctive value via parallel services extensive paradigms cross-unit manufactured products.</p> --}}
                                 </div>
                             </div>
 
@@ -120,9 +113,6 @@
                                                                 </li>
                                                             @endforeach
 
-                                                            {{-- <li><span><i class='bx bx-video' style="font-size: 24px;"></i></i>  Building a Strong Vocabulary for Everyday Communication</span> <span>45.05 <i class='bx bx-time-five' style="font-size: 24px;"></i></span></li>
-
-                                                            <li><span><i class="fa-regular fa-file-contract"></i>  Understanding Basic Sentence Structure and Grammar</span> <span>1.6hr <i class='bx bx-time-five' style="font-size: 24px;"></i></span></li> --}}
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -156,7 +146,7 @@
                 <div class="course-sidebar sticky-widget">
                     <h4 class="sidebar-title">Course Information</h4>
                     <ul class="course-sidebar-list">
-                        <li style="display: flex;align-items: center;"><i class='bx bx-home' style="font-size: 20px;"></i>Instructor: <span>Kevin Perry</span></li>
+                        <li style="display: flex;align-items: center;"><i class='bx bx-home' style="font-size: 20px;"></i>Instructor: <span>{{ $course->name }}</span></li>
                         <li style="display: flex;align-items: center;"><i class='bx bx-book-bookmark' style="font-size: 20px;"></i>Lessons: <span>{{ $course->lesson }}</span></li>
                         {{-- <li style="display: flex;align-items: center;"><i class='bx bx-time-five' style="font-size: 20px;"></i>Duration: <span>{{ $course->duration }}</span></li> --}}
                         <li style="display: flex;align-items: center;"><i class='bx bx-purchase-tag-alt' style="font-size: 20px;"></i>Course level: <span>{{ $course->course_level }}</span></li>

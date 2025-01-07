@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, shrink-to-fit=9">
     <meta name="description" content="Gambolthemes">
     <meta name="author" content="Gambolthemes">
-    <title>Cursus - Downloaded Course</title>
+    <title>Cursus - Downloaded Coursess video</title>
 
     <!-- Favicon Icon -->
     <link rel="icon" type="image/png" href="images/fav.png">
@@ -27,6 +27,54 @@
     <link href="{{ asset('user/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('user/vendor/bootstrap-select/docs/docs/dist/css/bootstrap-select.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('user/vendor/semantic/semantic.min.css') }}">
+
+    <style>
+        .html5-endscreen {
+            cursor: default;
+            overflow: hidden;
+            z-index: 0;
+            display: none !important;
+        }
+
+        .ytp-chrome-top-buttons {
+            white-space: nowrap;
+            visibility: hidden;
+            display: none;
+            opacity: 0px;
+        }
+
+        .ytp-impression-link-content {
+            visibility: hidden;
+            display: none;
+            opacity: 0px;
+        }
+
+        .ytp-copylink-title {
+            margin: auto;
+            width: 36px;
+            height: 36px;
+            display: none !important;
+            opacity: 0px;
+            visibility: hidden;
+        }
+
+        .ytp-chrome-top {
+            display: -webkit-flex;
+            display: -webkit-box;
+            display: flex;
+            -webkit-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+            -webkit-box-pack: end;
+            -webkit-justify-content: flex-end;
+            justify-content: flex-end;
+            left: 12px;
+            right: 12px;
+            top: 0;
+            z-index: 58;
+            display: none;
+        }
+    </style>
+
 
 </head>
 

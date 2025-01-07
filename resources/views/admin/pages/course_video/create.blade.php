@@ -28,7 +28,7 @@
                         <input type="hidden" name="course_module_id" value="{{ $id }}">
 
                         <div class="row align-items-end">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="mb-3">
                                     <label for="video_title" class="form-label">Video Title <span
                                             class="text-danger">*</span></label>
@@ -37,7 +37,7 @@
                                         value="{{ old('video_title') }}">
                                 </div>
                             </div>
-
+                        {{-- 
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="video_timer" class="form-label">Video Timer <span
@@ -46,10 +46,10 @@
                                         placeholder="Write here....." type="text"
                                         value="{{ old('video_timer') }}">
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="mb-3">
                                 <label for="status" class="form-label">Status <span
                                         class="text-danger">*</span></label>
@@ -60,9 +60,9 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="mb-3">
-                                <label for="video_link" class="form-label">Video Link <span
+                                <label for="video_link" class="form-label">Video Code <span
                                         class="text-danger">*</span></label>
 
                                 <input name="video_link" id="video_link" class="form-control"

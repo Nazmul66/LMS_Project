@@ -19,7 +19,8 @@
         <div class="_14d25">
             <div class="row">     
 
-                @forelse ($courses as $row)
+                @if ( $courses->count() > 0 )
+                    @foreach ($collection as $item)
                     <div class="col-lg-3 col-md-4">
                         <div class="fcrse_1 mt-30">
                             <a href="{{ route('user.course.details', $row->id) }}" class="fcrse_img">
@@ -50,13 +51,14 @@
                             </div>
                         </div>
                     </div>
+                    @endforeach
+                @else
+                <div class="alert alert-success text-center" role="alert">
+                    There's no course here
+              </div>
+                @endif
 
-                @empty
-                    <div class="alert alert-success text-center" role="alert">
-                          There's no course here
-                    </div>
-                @endforelse
- 
+
 
                 {{-- <div class="col-lg-3 col-md-4">
                     <div class="fcrse_1 mt-30">
