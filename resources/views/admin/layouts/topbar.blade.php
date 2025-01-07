@@ -26,9 +26,9 @@
                 <i class="fa fa-fw fa-bars"></i>
             </button>
 
-            <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect">
+            {{-- <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect">
                 <a href="{{ url('/') }}" style="font-size: 22px;"><i class='bx bx-home'></i></a>
-            </button>
+            </button> --}}
 
             {{-- <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect">
                 <a href="{{ url('/admin/cc') }}" style="font-size: 22px;"> <i class='bx bx-refresh'></i> </a>

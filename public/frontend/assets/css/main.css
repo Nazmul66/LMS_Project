@@ -2603,18 +2603,18 @@ START: Header CSS
 }
 
 .header .primary-header-inner .header-logo img {
-    max-width: 224px;
+    max-width: 55px;
 }
 
 @media (max-width: 1399px) {
     .header .primary-header-inner .header-logo img {
-        max-width: 180px;
+        max-width: 100px;
     }
 }
 
 @media (max-width: 1200px) {
     .header .primary-header-inner .header-logo img {
-        max-width: 160px;
+        max-width: 35px;
     }
 }
 
@@ -3340,13 +3340,13 @@ START: Header CSS
 
 @media only screen and (max-width: 992px) {
     .header-4 .primary-header .primary-header-inner {
-        padding: 20px;
+        padding: 12px 20px;
     }
 }
 
 @media only screen and (max-width: 767px) {
     .header-4 .primary-header .primary-header-inner {
-        padding: 20px 10px;
+        padding: 12px 10px;
     }
 }
 
@@ -4807,7 +4807,7 @@ START: Page Header CSS
     position: relative;
     z-index: 1;
     overflow: hidden;
-    padding: 120px 0;
+    padding: 50px 0;
 }
 
 .page-header .overlay {

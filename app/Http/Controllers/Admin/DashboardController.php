@@ -26,7 +26,12 @@ class DashboardController extends Controller
     {
         $data['title'] = 'Dashboard';
         $data['total_courses'] = DB::table('courses')->orderBy('id', 'desc')->get();
-        $data['total_orders']  = DB::table('orders')->where('status', 1)->get();
+        $data['total_orders']  = DB::table('orders')->get();
+        $data['incomes']       = DB::table('orders')
+                                ->leftJoin('carts', 'carts.order_id', 'orders.order_id')
+                                ->select('carts.qty', 'carts.price')
+                                ->where('status', 1)
+                                ->get();
         return view('admin.index', $data);
     }
 

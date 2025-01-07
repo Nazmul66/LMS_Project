@@ -3,7 +3,7 @@
         {{-- <div class="bg-img" data-background="{{ asset('frontend/assets/img/bg-img/page-header-bg.png') }}"></div> --}}
         <div class="overlay"></div>
         <div class="shapes">
-            <div class="shape shape-1"><img src="{{ asset('frontend/assets/img/shapes/page-header-shape-1.png') }}" alt="shape"></div>
+            {{-- <div class="shape shape-1"><img src="{{ asset('frontend/assets/img/shapes/page-header-shape-1.png') }}" alt="shape"></div> --}}
             <div class="shape shape-2"><img src="{{ asset('frontend/assets/img/shapes/page-header-shape-2.png') }}" alt="shape"></div>
             <div class="shape shape-3"><img src="{{ asset('frontend/assets/img/shapes/page-header-shape-3.png') }}" alt="shape"></div>
         </div>

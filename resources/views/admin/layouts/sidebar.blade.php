@@ -42,6 +42,27 @@
                     </a>
                 </li>
 
+                <li class="@yield('instructor')">
+                    <a href="{{ route('admin.instructor.index') }}" class="waves-effect">
+                        <i class='bx bx-message-rounded-detail'></i>
+                        <span key="t-brands">Instructors</span>
+                    </a>
+                </li>
+
+                <li class="@yield('about_us')">
+                    <a href="{{ route('admin.about_us.index') }}" class="waves-effect">
+                        <i class='bx bx-message-rounded-detail'></i>
+                        <span key="t-brands">About Section</span>
+                    </a>
+                </li>
+
+                <li class="@yield('feature')">
+                    <a href="{{ route('admin.features.index') }}" class="waves-effect">
+                        <i class='bx bx-message-rounded-detail'></i>
+                        <span key="t-brands">Features</span>
+                    </a>
+                </li>
+
                 <li class="@yield('testimonial')">
                     <a href="{{ route('admin.testimonials.index') }}" class="waves-effect">
                         <i class='bx bx-message-rounded-detail'></i>

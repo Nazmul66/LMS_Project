@@ -60,45 +60,47 @@
 </section>
 <!-- ./ hero-section -->
 
-
-
 <section class="feature-section-4 pt-120 pb-120">
     <div class="container">
         <div class="section-heading text-center">
-            <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>Our Features</h4>
-            <h2 class="section-title wow fade-in-bottom" data-wow-delay="400ms">Digital Art And Design Crafting <br>Art With Technology</h2>
+            <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>{{ $feature->title }}</h4>
+            <h2 class="section-title wow fade-in-bottom" data-wow-delay="400ms">{{ $feature->subtitle }}</h2>
         </div>
         <div class="row gy-lg-0 gy-4 justify-content-center">
-            <div class="col-lg-4 col-md-6">
-                <div class="feature-card text-center wow fade-in-bottom" data-wow-delay="400ms">
-                    <div class="icon"><img src="{{ asset('frontend/assets/img/icon/feature-icon-1.png') }}" alt="icon"></div>
-                    <div class="content">
-                        <h3 class="title">Accessibility & Flexibility</h3>
-                        <p>Online education should be accessible to learners from diverse backgrounds, offering the flexibility to study anytime.</p>
-                        {{-- <a href="about.html" class="ed-primary-btn">Learn More <i class="fa-sharp fa-regular fa-arrow-right"></i></a> --}}
+
+            @foreach ($features as $item)
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card text-center wow fade-in-bottom" data-wow-delay="400ms">
+                        <div class="icon"><img src="{{ asset($item->image) }}" alt="icon"></div>
+                        <div class="content">
+                            <h3 class="title">{{ $item->title }}</h3>
+                            <p>{{ $item->content }}</p>
+                            {{-- <a href="about.html" class="ed-primary-btn">Learn More <i class="fa-sharp fa-regular fa-arrow-right"></i></a> --}}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
+            @endforeach
+
+
+            {{-- <div class="col-lg-4 col-md-6">
                 <div class="feature-card text-center wow fade-in-bottom" data-wow-delay="500ms">
                     <div class="icon"><img src="{{ asset('frontend/assets/img/icon/feature-icon-2.png') }}" alt="icon"></div>
                     <div class="content">
                         <h3 class="title">Personalized Learning </h3>
                         <p>Online education should be accessible to learners from diverse backgrounds, offering the flexibility to study anytime.</p>
-                        {{-- <a href="about.html" class="ed-primary-btn">Learn More <i class="fa-sharp fa-regular fa-arrow-right"></i></a> --}}
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-4 col-md-6">
                 <div class="feature-card text-center wow fade-in-bottom" data-wow-delay="600ms">
                     <div class="icon"><img src="{{ asset('frontend/assets/img/icon/feature-icon-3.png') }}" alt="icon"></div>
                     <div class="content">
                         <h3 class="title">High-Quality Instruction</h3>
                         <p>Online education should be accessible to learners from diverse backgrounds, offering the flexibility to study anytime.</p>
-                        {{-- <a href="about.html" class="ed-primary-btn">Learn More <i class="fa-sharp fa-regular fa-arrow-right"></i></a> --}}
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>
@@ -110,9 +112,9 @@
             <div class="col-lg-6 col-md-12">
                 <div class="faq-img-wrap about-img-wrap-4 wow fade-in-left" data-wow-delay="400ms">
                     <div class="faq-img">
-                        <img src="{{ asset('frontend/assets/img/images/about-img-4.png') }}" alt="faq">
+                        <img src="{{ asset($aboutUs->image_path) }}" alt="faq">
                     </div>
-                    <div class="faq-text-box">
+                    {{-- <div class="faq-text-box">
                         <h4 class="student">Total Students</h4>
                         <ul class="faq-thumb-list">
                             <li><img src="{{ asset('frontend/assets/img/images/faq-thumb-1.png') }}" alt="faq"></li>
@@ -121,17 +123,17 @@
                             <li><img src="{{ asset('frontend/assets/img/images/faq-thumb-4.png') }}" alt="faq"></li>
                             <li class="number">25+</li>
                         </ul>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="col-lg-6 col-md-12">
                 <div class="about-content-4">
                     <div class="section-heading mb-20">
-                        <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>About Our Platform</h4>
-                        <h2 class="section-title wow fade-in-bottom" data-wow-delay="400ms"><span>What People Think</span> About <br> Our Company</h2>
+                        <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>{{ $aboutUs->title }}</h4>
+                        <h2 class="section-title wow fade-in-bottom" data-wow-delay="400ms"><span>{{ $aboutUs->subtitle }}</h2>
                     </div>
-                    <p class="mb-30 wow fade-in-bottom" data-wow-delay="400ms">Synergistically visualize alternative content before cross functional core Rapidiously administra standardized value via focused benefits. Rapidiously redefine highly <br> efficient niche markets</p>
-                    <div class="about-items wow fade-in-bottom" data-wow-delay="500ms">
+                    <p class="mb-30 wow fade-in-bottom" data-wow-delay="400ms">{{ $aboutUs->content }}</p>
+                    {{-- <div class="about-items wow fade-in-bottom" data-wow-delay="500ms">
                         <div class="about-item">
                             <div class="icon"><i class="fa-solid fa-circle-check"></i></div>
                             <div class="content">
@@ -146,7 +148,7 @@
                                 <p class="mb-0">Seamlessly envisioneer tactical <br> data through services.</p>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     {{-- <div class="about-btn wow fade-in-bottom" data-wow-delay="600ms">
                         <a href="contact.html" class="ed-primary-btn">Join With Us</a>
                     </div> --}}
@@ -161,10 +163,9 @@
     <div class="container">
         <div class="course-top heading-space align-items-end">
             <div class="section-heading mb-0">
-                <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>10,000+ unique online courses</h4>
-                <h2 class="section-title wow fade-in-bottom" data-wow-delay="400ms">Most popular courses​</h2>
+                <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>online courses</h4>
+                <h2 class="section-title wow fade-in-bottom" data-wow-delay="400ms">Our courses​</h2>
             </div>
-            
         </div>
 
         <div class="course-tab-content tab-content" id="myTabContent">
@@ -925,14 +926,14 @@
         <div class="shape shape-2"><img src="{{ asset('frontend/assets/img/shapes/testi-shape-4.png') }}" alt="shape"></div>
     </div>
     <div class="container">
-        <div class="row gy-xl-0 gy-5 align-items-center">
+        <div class="row gy-xl-0 gy-5">
             <div class="col-xl-5 col-lg-12">
                 <div class="testi-left-content white-content">
                     <div class="section-heading mb-20 white-content">
-                        <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>Our Testimonials</h4>
-                        <h2 class="section-title wow fade-in-bottom" data-wow-delay="400ms">What Students Think and <br>Say About EdCare</h2>
+                        <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>{{ $testimonial->title }}</h4>
+                        <h2 class="section-title wow fade-in-bottom" data-wow-delay="400ms">{{ $testimonial->subtitle }}</h2>
                     </div>
-                    <p class="mb-0 wow fade-in-bottom" data-wow-delay="500ms">Empowering businesses with cutting-edge technology, reliable support, <br> and seamless integration.</p>
+                    {{-- <p class="mb-0 wow fade-in-bottom" data-wow-delay="500ms">{{ $testimonial->content }}</p> --}}
                 </div>
             </div>
             <div class="col-xl-7 col-lg-12">
@@ -971,29 +972,34 @@
 <section class="team-section pt-120 pb-120">
     <div class="container">
         <div class="section-heading text-center">
-            <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>Our Instructors</h4>
-            <h2 class="section-title wow fade-in-bottom" data-wow-delay="400ms">Meet Our Expert Instructor</h2>
+            <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>{{ $instructor->title }}</h4>
+            <h2 class="section-title wow fade-in-bottom" data-wow-delay="400ms">{{ $instructor->subtitle }}</h2>
         </div>
         <div class="row gy-lg-0 gy-4 justify-content-center">
-            <div class="col-lg-3 col-md-6">
-                <div class="team-item-4 wow fade-in-bottom" data-wow-delay="300ms">
-                    <div class="team-thumb">
-                        <div class="overlay"></div>
-                        <img src="{{ asset('frontend/assets/img/team/team-1.png') }}" alt="team">
-                    </div>
-                    <div class="team-content">
-                        <h3 class="title"><a href="teachers.html">Matthew Daniel</a></h3>
-                        <span>Product Manager</span>
-                        <ul class="team-social">
-                            <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-behance"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
-                        </ul>
+
+            @foreach ($instructors as $item)
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-item-4 wow fade-in-bottom" data-wow-delay="300ms">
+                        <div class="team-thumb">
+                            <div class="overlay"></div>
+                            <img src="{{ asset($item->image) }}" alt="team">
+                        </div>
+                        <div class="team-content">
+                            <h3 class="title"><a href="javascript:void();">{{ $item->name }}</a></h3>
+                            <span>{{ $item->designation }}</span>
+                            {{-- <ul class="team-social">
+                                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-behance"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+                            </ul> --}}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
+            @endforeach
+
+
+            {{-- <div class="col-lg-3 col-md-6">
                 <div class="team-item-4 wow fade-in-bottom" data-wow-delay="400ms">
                     <div class="team-thumb">
                         <div class="overlay"></div>
@@ -1011,6 +1017,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-3 col-md-6">
                 <div class="team-item-4 wow fade-in-bottom" data-wow-delay="500ms">
                     <div class="team-thumb">
@@ -1029,6 +1036,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-3 col-md-6">
                 <div class="team-item-4 wow fade-in-bottom" data-wow-delay="600ms">
                     <div class="team-thumb">
@@ -1046,7 +1054,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>

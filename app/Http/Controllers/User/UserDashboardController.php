@@ -35,7 +35,8 @@ class UserDashboardController extends Controller
     public function order()
     {
         $orders = Order::leftJoin('users', 'users.id', 'orders.user_id')
-                ->select('orders.*', 'users.name', 'users.email')
+                ->leftJoin('carts', 'carts.order_id', 'orders.order_id')
+                ->select('orders.*', 'users.name', 'carts.course_id', 'users.email')
                 ->where('orders.user_id', Auth::user()->id)
                 ->get();
         return view('user.pages.order', compact('orders'));

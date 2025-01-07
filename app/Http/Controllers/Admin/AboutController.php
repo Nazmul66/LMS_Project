@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 
-class BannerController extends Controller
+class AboutController extends Controller
 {
     // protected $homePage;
     // public $user;
@@ -29,9 +29,9 @@ class BannerController extends Controller
         //     abort(403, 'Sorry !! You are Unauthorized.');
         // }
 
-        $data['title'] = "Manage Banner Section";
-        $data['row'] = HomePage::where('url_slug', 'banner-section')->first();
-        return view('admin.pages.banner.index', $data);
+        $data['title'] = "Manage About Section";
+        $data['row'] = HomePage::where('url_slug', 'about_section')->first();
+        return view('admin.pages.about_us.index', $data);
     }
 
 
@@ -64,7 +64,7 @@ class BannerController extends Controller
                     @unlink($homePage->image_path);
                 }
                 $imageName          =  rand(1, 99999999) . '.' . $images->getClientOriginalExtension();
-                $imagePath          = 'admin/assets/images/banner/';
+                $imagePath          = 'admin/assets/images/about/';
                 $images->move($imagePath, $imageName);
                 $homePage->image_path        =  $imagePath . $imageName;
             }
@@ -72,13 +72,13 @@ class BannerController extends Controller
         } catch (\Exception $e) {
             // dd($e);
             DB::rollback();
-            Toastr::error("Banner section updated error", 'Error', ["positionClass" => "toast-top-right"]);
+            Toastr::error("About section updated error", 'Error', ["positionClass" => "toast-top-right"]);
             return back();
         }
 
         $homePage->save();
         DB::commit();
-        Toastr::success("Banner section updated successfully", 'Success', ["positionClass" => "toast-top-right"]);
+        Toastr::success("About section updated successfully", 'Success', ["positionClass" => "toast-top-right"]);
         return redirect()->back();
     }
 

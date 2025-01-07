@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col-lg-12">
 
-                    <form action="{{ route('admin.banner.update', $row->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.about_us.update', $row->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row">

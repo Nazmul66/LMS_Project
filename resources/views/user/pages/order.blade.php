@@ -34,6 +34,7 @@
                             <th scope="col">Order Id</th>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
+                            <th scope="col">Course Name</th>
                             <th scope="col">Total Product</th>
                             <th scope="col">Total Amount</th>
                             <th scope="col">Payment Method</th>
@@ -43,29 +44,33 @@
     
                         <tbody>
                             @foreach ($orders as $row => $item)
-                            <tr class="text-center align-middle">
-                                <th scope="row">{{ $row + 1 }}</th>
-                                <td>{{ $item->order_id }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td>
-                                    <a href="mailto: {{ $item->email }}">
-                                        {{ $item->email }}
-                                    </a>
-                                </td>
-                                <td>{{ $item->total_product }}</td>
-                                <td>${{ $item->total_amount }}</td>
-                                <td>{{ $item->payment_method }}</td>
-                                <td>
-                                    @if ( $item->status == 1 )
-                                        <span class="text-success">Paid</span>
-                                    @elseif( $item->status == 2 )
-                                        <span class="text-warning">Pending</span>
-                                    @else
-                                        <span class="text-danger">Cancel</span>
-                                    @endif
-                                </td>
-                            </tr>
-    
+                                @php
+                                    $course = App\Models\Course::where('id', $item->course_id)->first();
+                                @endphp    
+
+                                <tr class="text-center align-middle">
+                                    <th scope="row">{{ $row + 1 }}</th>
+                                    <td>{{ $item->order_id }}</td>
+                                    <td>{{ $item->name }}</td>
+                                    <td>
+                                        <a href="mailto: {{ $item->email }}">
+                                            {{ $item->email }}
+                                        </a>
+                                    </td>
+                                    <td>{{ $course->title }}</td>
+                                    <td>{{ $item->total_product }}</td>
+                                    <td>${{ $item->total_amount }}</td>
+                                    <td>{{ $item->payment_method }}</td>
+                                    <td>
+                                        @if ( $item->status == 1 )
+                                            <span class="text-success">Paid</span>
+                                        @elseif( $item->status == 2 )
+                                            <span class="text-warning">Pending</span>
+                                        @else
+                                            <span class="text-danger">Cancel</span>
+                                        @endif
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>

@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Mail\OrderSuccessMail;
+use App\Models\AboutUs;
 use Illuminate\Http\Request;
 use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Contact;
 use App\Models\Course;
 use App\Models\CourseModule;
+use App\Models\Feature;
+use App\Models\Instructor;
 use App\Models\Order;
 use App\Models\Testimonial;
 use App\Models\User;
@@ -25,9 +28,17 @@ class FrontendController extends Controller
      */
     public function home()
     {
-        $data['banner']       = DB::table('homepage_sections')->where('url_slug', 'banner-section')->where('is_active', 1)->first();
+        $data['banner']          = DB::table('homepage_sections')->where('url_slug', 'banner-section')->where('is_active', 1)->first();
+        $data['aboutUs']         = DB::table('homepage_sections')->where('url_slug', 'about_section')->where('is_active', 1)->first();
+        $data['testimonial']     = DB::table('homepage_sections')->where('url_slug', 'testimonial-section')->where('is_active', 1)->first();
+        $data['feature']         = DB::table('homepage_sections')->where('url_slug', 'feature_section')->where('is_active', 1)->first();
+        $data['instructor']      = DB::table('homepage_sections')->where('url_slug', 'instructor_section')->where('is_active', 1)->first();
+        $data['instructor']      = DB::table('homepage_sections')->where('url_slug', 'instructor_section')->where('is_active', 1)->first();
+
         $data['courses']      = Course::where('status', 1)->get();
         $data['testimonials'] = Testimonial::where('status', 1)->get();
+        $data['features']     = Feature::where('status', 1)->limit(3)->get();
+        $data['instructors']  = Instructor::where('status', 1)->get();
         return view('frontend.pages.home', $data);
     }
 
@@ -179,7 +190,6 @@ class FrontendController extends Controller
     public function order(Request $request)
     {
         // dd($request->all());
-
         if( $request->total_product == 0 ){
             Toastr::error('Please add at least 1 product', 'error', ["positionClass" => "toast-top-right"]);
            return redirect()->route('home');

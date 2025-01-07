@@ -10,7 +10,7 @@ use Intervention\Image\Facades\Image;
 
 if (!function_exists('getSetting')) {
     function getSetting(){
-        return Setting::first();
+        return DB::table('settings')->first();
     }
 }
 

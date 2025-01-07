@@ -10,7 +10,7 @@
     <meta name="author" content="multikart">
     <link rel="icon" href="../assets/images/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
-    <title>Multikart - Multi-purpose E-commerce Html Template</title>
+    <title>Order Success</title>
 
     <!--Google font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">

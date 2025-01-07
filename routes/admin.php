@@ -11,6 +11,9 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\FeaturesController;
+use App\Http\Controllers\Admin\InstructorController;
+use App\Http\Controllers\Admin\AboutController;
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth','IsAdmin']], function () {
 
@@ -43,12 +46,43 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth','Is
     });
 
 
+    // Instructor
+    Route::group(['prefix' => 'instructor', 'as' => 'instructor.'], function () {
+        Route::get('/', [InstructorController::class, 'index'])->name('index');
+        Route::get('/create', [InstructorController::class, 'create'])->name('create');
+        Route::post('/store', [InstructorController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [InstructorController::class, 'edit'])->name('edit');
+        Route::post('/update/{id}', [InstructorController::class, 'update'])->name('update');
+        Route::post('/section-update/{id}', [InstructorController::class, 'sectionupdate'])->name('section.update');
+        Route::get('/delete/{id}', [InstructorController::class, 'delete'])->name('delete');
+    });
+
+
+    // Features
+    Route::group(['prefix' => 'features', 'as' => 'features.'], function () {
+        Route::get('/', [FeaturesController::class, 'index'])->name('index');
+        Route::get('/create', [FeaturesController::class, 'create'])->name('create');
+        Route::post('/store', [FeaturesController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [FeaturesController::class, 'edit'])->name('edit');
+        Route::post('/update/{id}', [FeaturesController::class, 'update'])->name('update');
+        Route::post('/section-update/{id}', [FeaturesController::class, 'sectionupdate'])->name('section.update');
+        Route::get('/delete/{id}', [FeaturesController::class, 'delete'])->name('delete');
+    });
+
     // Banner
     Route::group(['prefix' => 'banner', 'as' => 'banner.'], function () {
         Route::get('/', [BannerController::class, 'index'])->name('index');
         Route::get('{id}/view', [BannerController::class, 'view'])->name('view');
         Route::post('{id}/update', [BannerController::class, 'update'])->name('update');
         Route::get('{id}/delete', [BannerController::class, 'delete'])->name('delete');
+    });
+
+    // About Us
+    Route::group(['prefix' => 'about_us', 'as' => 'about_us.'], function () {
+        Route::get('/', [AboutController::class, 'index'])->name('index');
+        Route::get('{id}/view', [AboutController::class, 'view'])->name('view');
+        Route::post('{id}/update', [AboutController::class, 'update'])->name('update');
+        Route::get('{id}/delete', [AboutController::class, 'delete'])->name('delete');
     });
 
     // Order
