@@ -241,23 +241,27 @@
                 </div> --}}
             </div>
         </div>
-        <div class="lecture-container">
-            <h2 class="lecture-title mb-4">A Note On Asking For Help</h2>
-            <div class="lecture-content-inner mt-35">
-                <div class="lecture-content-inner-video">
-                    <div class="video-responsive">
-                            {!! $course_video_first->video_link !!}
-                             {{-- <iframe src="https://www.youtube.com/embed/Ohe_JzKksvA" class="lec-responsive-width"></iframe> --}}
+
+        @if ( !empty($course_video_first->video_link) )
+            <div class="lecture-container">
+                <h2 class="lecture-title mb-4">A Note On Asking For Help</h2>
+                <div class="lecture-content-inner mt-35">
+                    <div class="lecture-content-inner-video">
+                        <div class="video-responsive">
+                                {!! $course_video_first->video_link !!}
+                                {{-- <iframe src="https://www.youtube.com/embed/Ohe_JzKksvA" class="lec-responsive-width"></iframe> --}}
+                        </div>
                     </div>
                 </div>
+                {{-- <div class="lecture-content-txt mt-35">
+                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce pretium nisl sit amet nisi vehicula iaculis. Praesent nisl tellus, suscipit vel aliquet id, hendrerit in leo. Nulla facilisi. Aenean consectetur malesuada nibh, eu feugiat
+                        augue finibus eu. Quisque ac erat nec libero finibus bibendum ac quis libero. Nulla sed tempor leo. Donec vulputate justo arcu, ac ornare neque gravida id. Sed in ligula mattis, commodo quam a, dictum massa. Donec nec neque vestibulum,
+                        faucibus quam eget, posuere nisi. Donec tincidunt placerat rhoncus. Integer sollicitudin feugiat dolor id varius. Aenean ut nibh vel erat rutrum lacinia. Nam tristique faucibus elementum. Donec id turpis a sem finibus scelerisque et
+                        ut elit. Aliquam quis nisl augue. Donec volutpat leo eget ligula dictum, vitae faucibus massa gravida.</p>
+                </div> --}}
             </div>
-            {{-- <div class="lecture-content-txt mt-35">
-                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce pretium nisl sit amet nisi vehicula iaculis. Praesent nisl tellus, suscipit vel aliquet id, hendrerit in leo. Nulla facilisi. Aenean consectetur malesuada nibh, eu feugiat
-                    augue finibus eu. Quisque ac erat nec libero finibus bibendum ac quis libero. Nulla sed tempor leo. Donec vulputate justo arcu, ac ornare neque gravida id. Sed in ligula mattis, commodo quam a, dictum massa. Donec nec neque vestibulum,
-                    faucibus quam eget, posuere nisi. Donec tincidunt placerat rhoncus. Integer sollicitudin feugiat dolor id varius. Aenean ut nibh vel erat rutrum lacinia. Nam tristique faucibus elementum. Donec id turpis a sem finibus scelerisque et
-                    ut elit. Aliquam quis nisl augue. Donec volutpat leo eget ligula dictum, vitae faucibus massa gravida.</p>
-            </div> --}}
-        </div>
+        @endif
+
     </div>
     <!-- Body End -->
 

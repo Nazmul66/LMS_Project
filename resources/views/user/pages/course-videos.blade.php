@@ -245,6 +245,7 @@
                 </div> --}}
             </div>
         </div>
+        
         <div class="lecture-container">
             <h2 class="lecture-title mb-4">A Note On Asking For Help</h2>
             <div class="lecture-content-inner mt-35">

@@ -76,6 +76,12 @@ class UserDashboardController extends Controller
         $course_modules       = CourseModule::where('course_id', $id)->where('status', 1)->get();
         $course_module_first  = CourseModule::where('course_id', $id)->where('status', 1)->first();
         $course_video_first   = CourseVideo::where('course_module_id', $course_module_first->id)->where('status', 1)->first();
+
+        if( is_null($course_video_first) ){
+            Toastr::error('There is no video player', 'Error', ["positionClass" => "toast-top-right"]);
+            return back();
+        }
+
         return view('user.pages.course-module', compact('course_modules', 'course_video_first', 'id'));
     }
 

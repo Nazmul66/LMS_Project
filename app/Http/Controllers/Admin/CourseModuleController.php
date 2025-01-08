@@ -17,7 +17,7 @@ class CourseModuleController extends Controller
         $data['title']            = 'Manage Course Module List';
         $data['course_modules']   = CourseModule::
                                     where('course_id', $course_id)
-                                    ->orderBy('id', 'desc')
+                                    ->orderBy('id', 'asc')
                                     ->get();
         $data['course_id']        = $course_id;
         return view('admin.pages.course_module.index', $data);
