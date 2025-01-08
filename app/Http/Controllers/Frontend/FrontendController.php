@@ -107,13 +107,15 @@ class FrontendController extends Controller
                 ->where('order_id', NULL)
                 ->first();
 
-            if (!empty($cart)) {
-                $cart->qty += 1;
-                $cart->save();
-
-                Toastr::success('Product Quantity increase', 'Success', ["positionClass" => "toast-top-right"]);
+            if (!empty($cart) && $cart->qty >= 1) {
+                Toastr::error('You can only add one unit of this product to your cart at a time.', 'Error', ["positionClass" => "toast-top-right"]);
                 return redirect()->route('cart');
             } 
+            else if( Cart::where('user_id', Auth::user()->id)->first()->course_id == $request->course_id ){
+
+                Toastr::error('Same Product cannot be purchase.', 'Error', ["positionClass" => "toast-top-right"]);
+                return back();
+            }
             else {
                 $course = Course::where('id', $request->course_id)->first();
 
@@ -233,7 +235,7 @@ class FrontendController extends Controller
                             ->where('orders.order_id', $order->order_id)
                             ->first();
         
-        Mail::to($user->email)->send(new OrderSuccessMail($mail_order));
+        // Mail::to($user->email)->send(new OrderSuccessMail($mail_order));
 
         Toastr::success('Order Successfully Done', 'Success', ["positionClass" => "toast-top-right"]);
         return redirect()->route('order.success', $order->order_id);

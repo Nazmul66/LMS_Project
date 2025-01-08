@@ -20,7 +20,7 @@
             <div class="row">     
 
                 @if ( $courses->count() > 0 )
-                    @foreach ($collection as $item)
+                    @foreach ($courses as $row)
                     <div class="col-lg-3 col-md-4">
                         <div class="fcrse_1 mt-30">
                             <a href="{{ route('user.course.details', $row->id) }}" class="fcrse_img">

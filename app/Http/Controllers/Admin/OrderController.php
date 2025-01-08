@@ -16,7 +16,7 @@ class OrderController extends Controller
     {
         $data['title']  = "Manage Order List";
         $data['orders'] = Order::leftJoin('users', 'users.id', 'orders.user_id')
-                    ->select('users.*','orders.order_id','orders.total_product','orders.total_amount','orders.payment_method', 'orders.status', 'orders.created_at')
+                    ->select('users.*','orders.order_id','orders.total_product','orders.total_amount','orders.payment_method', 'orders.status', 'orders.created_at', 'orders.transaction_id', 'orders.payment_number',)
                     ->where('users.role', 2)
                     ->orderBy('orders.id', 'DESC')
                     ->get();

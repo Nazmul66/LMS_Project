@@ -22,6 +22,13 @@
                         <span class="menu--label">My Profile</span>
                     </a>
                 </li>
+
+                <li class="menu--item">
+                    <a href="{{ url('/') }}" class="menu--link" title="Homepage">
+                        <i class='bx bx-door-open menu--icon'></i>
+                        <span class="menu--label">Go Homepage</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

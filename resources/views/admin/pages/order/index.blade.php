@@ -32,7 +32,8 @@
                     <thead>
                         <tr>
                             <th>#SL.</th>
-                            <th>Order Id</th>
+                            <th>Transaction Id</th>
+                            <th>Payment Number</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
@@ -49,7 +50,12 @@
                         @foreach ($orders as $key => $row)
                             <tr>
                                 <th scope="row">{{ $key + 1 }}</th>
-                                <th >{{ $row->order_id }}</th>
+                                <th >{{ $row->transaction_id }}</th>
+                                <td>
+                                    <span style="white-space: nowrap;">
+                                        {{ $row->payment_number }}
+                                    </span>
+                                </td>
                                 <td>
                                     <span style="white-space: nowrap;">
                                         {{ $row->name }}
