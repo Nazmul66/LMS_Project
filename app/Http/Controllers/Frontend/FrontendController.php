@@ -111,11 +111,10 @@ class FrontendController extends Controller
                 Toastr::error('You can only add one unit of this product to your cart at a time.', 'Error', ["positionClass" => "toast-top-right"]);
                 return redirect()->route('cart');
             } 
-            else if( Cart::where('user_id', Auth::user()->id)->first()->course_id == $request->course_id ){
-
-                Toastr::error('Same Product cannot be purchase.', 'Error', ["positionClass" => "toast-top-right"]);
-                return back();
-            }
+            // else if( Cart::where('user_id', Auth::user()->id)->first()->course_id == $request->course_id ){
+            //     Toastr::error('Same Product cannot be purchase.', 'Error', ["positionClass" => "toast-top-right"]);
+            //     return back();
+            // }
             else {
                 $course = Course::where('id', $request->course_id)->first();
 
@@ -191,7 +190,10 @@ class FrontendController extends Controller
      */
     public function order(Request $request)
     {
-        // dd($request->all());
+        $request->validate([
+            'transaction_id'   => 'required|unique:orders,transaction_id',
+        ]);
+
         if( $request->total_product == 0 ){
             Toastr::error('Please add at least 1 product', 'error', ["positionClass" => "toast-top-right"]);
            return redirect()->route('home');

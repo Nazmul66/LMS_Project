@@ -49,7 +49,6 @@ class CourseVideoController extends Controller
         $request->validate([
             'course_module_id'  => 'required|integer',
             'video_title'       => 'required|unique:course_videos,video_title',
-            'video_timer'       => 'required',
             'video_link'        => 'required',
         ]);
 
@@ -99,7 +98,6 @@ class CourseVideoController extends Controller
 
         $request->validate([
             'video_title'   => 'required|unique:course_videos,video_title,' . $id,
-            'video_timer'       => 'required',
             'video_link'        => 'required',
         ]);
 

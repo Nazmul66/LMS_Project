@@ -89,6 +89,8 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth','Is
     Route::group(['prefix' => 'order', 'as' => 'order.'], function () {
         Route::get('/', [OrderController::class, 'index'])->name('index');
         Route::get('/update/{order_id}', [OrderController::class, 'update'])->name('update');
+        Route::get('/pending-update/{order_id}', [OrderController::class, 'pending_update'])->name('pending.update');
+        Route::get('/cancel-update/{order_id}', [OrderController::class, 'cancel_update'])->name('cancel.update');
     });
 
 

@@ -63,10 +63,10 @@
                                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                 </div>
 
-                                <div class="form-check">
+                                {{-- <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="checkbox" required />
                                     <label class="form-check-label" for="checkbox">Remember me</label>
-                                </div>
+                                </div> --}}
 
                                 <div class="mt-3 d-grid">
                                     <button class="btn btn-primary btn-block" type="submit">Log In</button>

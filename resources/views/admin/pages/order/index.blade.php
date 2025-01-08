@@ -13,6 +13,12 @@
         .dt-layout-cell{
             overflow-x: auto !important;
         }
+        /* .duplicate_data{
+
+        }
+        .duplicate_data.active td{
+             background: #ff000038;
+        } */
     </style>
 @endpush
 
@@ -34,6 +40,7 @@
                             <th>#SL.</th>
                             <th>Transaction Id</th>
                             <th>Payment Number</th>
+                            <th>Course Name</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
@@ -47,17 +54,31 @@
                     </thead>
 
                     <tbody>
-                        @foreach ($orders as $key => $row)
+                        {{-- @php
+                            // Group courses to find duplicates
+                            $courseCounts = $orders->groupBy('course_title')->map->count();
+                        @endphp --}}
+
+                        @foreach ($orders as $key => $row) 
+                            {{-- @php
+                                // Check if the course_title is duplicated
+                                $isDuplicate = $courseCounts[$row->course_title] > 1;
+                            @endphp --}}
                             <tr>
-                                <th scope="row">{{ $key + 1 }}</th>
-                                <th >{{ $row->transaction_id }}</th>
+                                <td scope="row">{{ $key + 1 }}</td>
+                                <td >{{ $row->transaction_id }}</td>
                                 <td>
-                                    <span style="white-space: nowrap;">
+                                    <span >
                                         {{ $row->payment_number }}
                                     </span>
                                 </td>
                                 <td>
-                                    <span style="white-space: nowrap;">
+                                    <span >
+                                        {{ $row->course_title }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span >
                                         {{ $row->name }}
                                     </span>
                                 </td>
@@ -65,7 +86,7 @@
                                     <a href="mailto:{{ $row->email }}">{{ $row->email }}</a>
                                 </td>
                                 <td>
-                                    <a href="tel:{{ $row->phone }}" style="white-space: nowrap;">{{ $row->phone }}</a>
+                                    <a href="tel:{{ $row->phone }}" >{{ $row->phone }}</a>
                                 </td>
                                 <td>
                                     <span class="text-dark">{{ $row->total_product }}</span>
@@ -88,7 +109,7 @@
                                 </td>
                                 <td>
                                     <span class="text-dark"
-                                        style="white-space: nowrap;">{{ date('Y-m-d', strtotime($row->created_at)) }}</span>
+                                        >{{ date('Y-m-d', strtotime($row->created_at)) }}</span>
                                 </td>
                                 <td>
                                     <div class="dropdown">
@@ -103,12 +124,40 @@
                                                         class="fas fa-eye"></i> View</button>
                                             </li>
 
-                                            @if ( $row->status == 2 )
+                                            @if ($row->status == 1) <!-- Status 1: Paid -->
                                                 <li>
-                                                    <a href="{{ route('admin.order.update', $row->order_id) }}" class="dropdown-item" style="font-size: 16px;">
-                                                        <i class="fas fa-check-circle text-success"></i> Confirm
+                                                    <a href="{{ route('admin.order.pending.update', $row->order_id) }}" class="dropdown-item" style="font-size: 16px;">
+                                                        <span class="text-warning">
+                                                            <i class="fas fa-exclamation-circle"></i> Pending
+                                                        </span>
                                                     </a>
                                                 </li>
+
+                                                <li>
+                                                    <a href="{{ route('admin.order.cancel.update', $row->order_id) }}" class="dropdown-item" style="font-size: 16px;">
+                                                        <span class="text-danger">
+                                                            <i class="fas fa-times"></i> Cancel
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                                
+                                            @elseif ($row->status == 2) <!-- Status 2: Pending -->
+                                                <li>
+                                                    <a href="{{ route('admin.order.update', $row->order_id) }}" class="dropdown-item" style="font-size: 16px;">
+                                                        <span class="text-success">
+                                                            <i class="fas fa-check-circle"></i> Paid
+                                                        </span>
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="{{ route('admin.order.cancel.update', $row->order_id) }}" class="dropdown-item" style="font-size: 16px;">
+                                                        <span class="text-danger">
+                                                            <i class="fas fa-times"></i> Cancel
+                                                        </span>
+                                                    </a>
+                                                </li>
+
                                             @endif
                                         </ul>
                                     </div>

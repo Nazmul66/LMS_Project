@@ -44,7 +44,6 @@ class CourseController extends Controller
             'designation'       => 'required|string',
             'lesson'            => 'required|integer',
             'course_level'      => 'required',
-            'duration'          => 'required',
             'price'             => 'required|integer',
             'description'       => 'required',
         ]);
@@ -125,7 +124,6 @@ class CourseController extends Controller
             'designation'       => 'required|string',
             'lesson'            => 'required|integer',
             'course_level'      => 'required',
-            'duration'          => 'required',
             'price'             => 'required|integer',
             'description'       => 'required',
         ]);

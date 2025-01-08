@@ -16,7 +16,9 @@ class OrderController extends Controller
     {
         $data['title']  = "Manage Order List";
         $data['orders'] = Order::leftJoin('users', 'users.id', 'orders.user_id')
-                    ->select('users.*','orders.order_id','orders.total_product','orders.total_amount','orders.payment_method', 'orders.status', 'orders.created_at', 'orders.transaction_id', 'orders.payment_number',)
+                    ->leftJoin('carts', 'carts.order_id', 'orders.order_id')
+                    ->leftJoin('courses', 'courses.id', 'carts.course_id')
+                    ->select('users.*','orders.order_id','orders.total_product','orders.total_amount','orders.payment_method', 'orders.status', 'orders.created_at', 'orders.transaction_id', 'orders.payment_number', 'carts.course_id', 'courses.title as course_title')
                     ->where('users.role', 2)
                     ->orderBy('orders.id', 'DESC')
                     ->get();
@@ -32,6 +34,28 @@ class OrderController extends Controller
         $order->save();
 
          Toastr::success(trans('Order Confirm Successfully!'), 'Success', ["positionClass" => "toast-top-right"]);
+         return redirect()->back();
+    }
+
+    public function pending_update(string $order_id)
+    {
+        //  dd($order_id);
+        $order  =  Order::where('order_id', $order_id)->first();
+        $order->status = 2;
+        $order->save();
+
+         Toastr::success(trans('Order Pending Successfully!'), 'Success', ["positionClass" => "toast-top-right"]);
+         return redirect()->back();
+    }
+
+    public function cancel_update(string $order_id)
+    {
+        //  dd($order_id);
+        $order  =  Order::where('order_id', $order_id)->first();
+        $order->status = 3;
+        $order->save();
+
+         Toastr::success(trans('Order Cancel Successfully!'), 'Success', ["positionClass" => "toast-top-right"]);
          return redirect()->back();
     }
 }
