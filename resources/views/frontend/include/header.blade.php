@@ -85,6 +85,8 @@
                 </div>
             </div>
         </div>
+
+
         <div class="primary-header">
             <div class="container">
                 <div class="primary-header-inner">
@@ -149,6 +151,22 @@
                                     <li class="@yield('contact')">
                                         <a href="{{ route('contact') }}">Contact</a>
                                     </li>
+                                    <li>
+                                        <div class="d-lg-none">
+                                            @if ( Auth::check() )
+                                                @if ( Auth::user()->role == 2 )
+                                                    <form method="POST" action="{{ route('logout') }}">
+                                                    @csrf
+                                                        <button class="dropdown-item" type="submit" >
+                                                            {{ __('Log Out') }}
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                            @else
+                                                <a href="{{ route('login') }}">Login </a>
+                                            @endif
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -205,15 +223,15 @@
             <div class="side-menu-wrap"></div>
             <ul class="side-menu-list">
                 <li>
-                    <i class="fa-light fa-location-dot"></i>Address : <span>{{ getSetting()->address }}</span>
+                    <i class="fa-solid fa-location-dot"></i>Address : <span>{{ getSetting()->address }}</span>
                 </li>
 
                 <li>
-                    <i class="fa-light fa-phone"></i>Phone : <a href="tel:{{ getSetting()->phone ? getSetting()->phone : getSetting()->phone_optional }}">{{ getSetting()->phone ? getSetting()->phone : getSetting()->phone_optional }}</a>
+                    <i class="fa-solid fa-phone"></i>Phone : <a href="tel:{{ getSetting()->phone ? getSetting()->phone : getSetting()->phone_optional }}">{{ getSetting()->phone ? getSetting()->phone : getSetting()->phone_optional }}</a>
                 </li>
     
                 <li>
-                    <i class="fa-light fa-envelope"></i>Email : <a href="mailto:{{ getSetting()->email ? getSetting()->email : getSetting()->email_optional }}">{{ getSetting()->email ? getSetting()->email : getSetting()->email_optional }}</a></li>
+                    <i class="fa-solid fa-envelope"></i>Email : <a href="mailto:{{ getSetting()->email ? getSetting()->email : getSetting()->email_optional }}">{{ getSetting()->email ? getSetting()->email : getSetting()->email_optional }}</a></li>
             </ul>
         </div>
     </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
+use App\Models\Course;
 use App\Models\CourseModule;
 use App\Models\CourseVideo;
 use App\Models\Order;
@@ -58,13 +59,14 @@ class UserDashboardController extends Controller
     {
         // dd($id);
         $order   = Order::where('user_id', Auth::user()->id)->first();
-        $course = Cart::leftJoin('courses', 'courses.id', 'carts.course_id')
-                   ->leftJoin('users', 'users.id', 'carts.user_id')
-                   ->select('courses.*')
-                   ->where('carts.order_id', $order->order_id)
-                   ->where('courses.id', $id)
-                   ->first();
+        $course  = Course::where('courses.id', $id)->first();
         $course_modules = CourseModule::where('course_id', $course->id)->where('status', 1)->get();
+
+        if( count($course_modules) < 1 ){
+            Toastr::error('There is no course module', 'Error', ["positionClass" => "toast-top-right"]);
+            return back();
+        }
+
         return view('user.pages.course-details', compact('course', 'course_modules'));
     }
 
@@ -74,11 +76,21 @@ class UserDashboardController extends Controller
     public function course_module(string $id)
     {
         $course_modules       = CourseModule::where('course_id', $id)->where('status', 1)->get();
-        $course_module_first  = CourseModule::where('course_id', $id)->where('status', 1)->first();
-        $course_video_first   = CourseVideo::where('course_module_id', $course_module_first->id)->where('status', 1)->first();
 
-        if( is_null($course_video_first) ){
-            Toastr::error('There is no video player', 'Error', ["positionClass" => "toast-top-right"]);
+        $course_video_first = null;
+
+        foreach ($course_modules as $module) {
+            $course_video_first = CourseVideo::where('course_module_id', $module->id)
+                ->where('status', 1)
+                ->first();
+
+            if ($course_video_first) {
+                break; // Exit the loop once the first video is found
+            }
+        }
+
+        if (is_null($course_video_first)) {
+            Toastr::error('There is no video player available for this course.', 'Error', ["positionClass" => "toast-top-right"]);
             return back();
         }
 

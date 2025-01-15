@@ -15,6 +15,7 @@
     <!-- Stylesheets -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,500' rel='stylesheet'>
     <link href='{{ asset('user/vendor/unicons-2.0.1/css/unicons.css') }}' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link href="{{ asset('user/css/vertical-responsive-menu.min.css') }}" rel="stylesheet">
     <link href="{{ asset('user/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('user/css/responsive.css') }}" rel="stylesheet">
@@ -113,33 +114,37 @@
                 <div class="course-course-section">
 
                     @foreach ($course_modules as $item)
+                        @php
+                            $course_videos = App\Models\CourseVideo::where('course_module_id', $item->id)->where('status', 1)->get();
+                        @endphp
+                        
                         <div class="section-header pp-2 d-flex">
                             <span class="section-name flex-grow-1 ms-2 d-flex">
                                 <strong class="flex-grow-1">{{ $item->name }}</strong>
                             </span>
                         </div>
-
-                        @php
-                            $course_videos = App\Models\CourseVideo::where('course_module_id', $item->id)->where('status', 1)->get();
-                        @endphp
                         
                         <div class="course-section-body">
                             @foreach ($course_videos as $index => $row)
 
-                                <div class="sidebar-section-item {{ $index === 0 ? 'active' : '' }}">
+                               <div class="sidebar-section-item ">
                                     <div class="section-item-title border-bottom">
                                         <a href="{{ route('user.course.videos', [$id, $row->video_slug]) }}" class="pp-2 d-flex">
-                                            <span class="lecture-status-icon pr-1">
-                                                <i class="uil uil-file icon_142"></i>
+                                            <span class="lecture-status-icon pr-1 me-2">
+                                                <i class="bx bx-play-circle"></i>
                                             </span>
                                             <div class="title-container pl-2 flex-grow-1 d-flex">
                                                 <span class="lecture-name flex-grow-1">
-                                                    {{ $row->video_title }} <small>({{ $row->video_timer }})</small>
+                                                    {{ $row->video_title }} 
                                                 </span>                                              
                                             </div>
                                         </a>
                                     </div>
                                 </div>
+
+                                @php
+                                    $isFirstVideo = false; 
+                                @endphp
                             @endforeach
                         </div>
                     @endforeach
@@ -248,8 +253,12 @@
                 <div class="lecture-content-inner mt-35">
                     <div class="lecture-content-inner-video">
                         <div class="video-responsive">
-                                {!! $course_video_first->video_link !!}
-                                {{-- <iframe src="https://www.youtube.com/embed/Ohe_JzKksvA" class="lec-responsive-width"></iframe> --}}
+
+                            <iframe width="640" height="360"
+                                src="https://www.youtube.com/embed/{{ $course_video_first->video_link }}?modestbranding=1&rel=0&showinfo=0&iv_load_policy=3" frameborder="0"
+                                allow="autoplay; encrypted-media" allowfullscreen>
+                            </iframe>
+                        
                         </div>
                     </div>
                 </div>

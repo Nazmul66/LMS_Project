@@ -198,14 +198,18 @@
         <div class="search-close"><i class="fa-sharp fa-regular fa-xmark"></i></div>
     </div>
 </div> --}}
-<!-- /#popup-search-box -->
 
+
+
+<!-- #popup-search-box -->
 <div class="mobile-side-menu">
     <div class="side-menu-content">
 
         <div class="side-menu-head">
             <a href="{{ route('home') }}"><img src="{{ asset(getSetting()->logo) }}" alt="logo"></a>
-            <button class="mobile-side-menu-close"><i class='bx bx-x' style="font-size: 24px;"></i></button>
+            <button class="mobile-side-menu-close">
+                <i class='bx bx-x' style="font-size: 24px;"></i>
+            </button>
         </div>
 
         <div class="side-menu-wrap"></div>

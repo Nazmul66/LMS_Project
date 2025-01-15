@@ -41,7 +41,7 @@ class CourseModuleController extends Controller
         // }
 
         $request->validate([
-            'name'              => 'required|unique:course_modules,name',
+            'name'              => 'required',
         ]);
 
         DB::beginTransaction();
@@ -87,7 +87,7 @@ class CourseModuleController extends Controller
         // }
 
         $request->validate([
-            'name'              => 'required|unique:course_modules,name,' . $id,
+            'name'              => 'required',
         ]);
 
         DB::beginTransaction();

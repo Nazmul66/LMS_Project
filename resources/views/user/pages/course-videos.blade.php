@@ -15,6 +15,7 @@
     <!-- Stylesheets -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,500' rel='stylesheet'>
     <link href='{{ asset('user/vendor/unicons-2.0.1/css/unicons.css') }}' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link href="{{ asset('user/css/vertical-responsive-menu.min.css') }}" rel="stylesheet">
     <link href="{{ asset('user/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('user/css/responsive.css') }}" rel="stylesheet">
@@ -107,7 +108,7 @@
     <!-- Body Start -->
     <div class="lecture-container-wrap d-flex">
         <div class="lecture-sidebar">
-            <h4 class="p-4 lecture-sidebar-course-title">The Web Developer Bootcamp </h4>
+            <h4 class="p-4 lecture-sidebar-course-title">Welcome to Course Bootcamp </h4>
 
             {{-- <div>
                 <p>Current Segment: {{ request()->segment(4) }}</p>
@@ -133,12 +134,12 @@
                                 <div class="sidebar-section-item {{ request()->segment(4) === $row->video_slug ? 'active' : '' }}">
                                     <div class="section-item-title border-bottom">
                                         <a href="{{ route('user.course.videos', [$id, $row->video_slug]) }}" class="pp-2 d-flex">
-                                            <span class="lecture-status-icon pr-1">
-                                                <i class="uil uil-file icon_142"></i>
+                                            <span class="lecture-status-icon pr-1 me-2">
+                                                <i class="bx bx-play-circle"></i>
                                             </span>
                                             <div class="title-container pl-2 flex-grow-1 d-flex">
                                                 <span class="lecture-name flex-grow-1">
-                                                    {{ $row->video_title }} <small>({{ $row->video_timer }})</small>
+                                                    {{ $row->video_title }}
                                                 </span>                                              
                                             </div>
                                         </a>

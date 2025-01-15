@@ -1031,7 +1031,7 @@
                             </svg>
                         </div>
                         <h2>thank you</h2>
-                        <p>Payment is successfully processsed and your order is on the way</p>
+                        <p>Payment is successfully processsed</p>
                         <p class="font-weight-bold">Transaction ID: {{ $order->order_id }}</p>
 
                         <a href="{{ url('/') }}" type="button" class="btn btn-success mt-4">Go To Home Page</a>
@@ -1052,8 +1052,8 @@
                         <table class="table product-order-table">
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th>product name</th>
+                                    <th>SL.</th>
+                                    <th>Course name</th>
                                     <th>quantity</th>
                                     <th>price</th>
                                 </tr>
@@ -1123,29 +1123,31 @@
                 <div class="col-lg-6">
                     <div class="order-success-sec">
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <h4>summery</h4>
                                 <ul class="order-detail">
-                                    <li>order ID: {{ $order->order_id }}</li>
-                                    <li>Order Date: {{ date('M d, Y') }}</li>
-                                    <li>Order Total: $ {{ number_format($order->total_amount, 2) }}</li>
+                                    <li>Course ID: {{ $order->order_id }}</li>
+                                    <li>Course Date: {{ date('M d, Y') }}</li>
+                                    <li>Course Total: ${{ number_format($order->total_amount, 2) }}</li>
                                 </ul>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <h4>shipping address</h4>
                                 <ul class="order-detail">
                                     <li>{{ $order->address }}</li>
                                     {{-- <li>568, suite ave.</li>
                                     <li>Austrlia, 235153</li> --}}
-                                    <li>Contact No. {{ $order->phone }}</li>
+                                    @if ( !empty($order->phone) )
+                                        <li>Contact No. {{ $order->phone }}</li>
+                                    @endif
                                 </ul>
                             </div>
 
-                            <div class="col-sm-12 payment-mode">
+                            {{-- <div class="col-sm-12 payment-mode">
                                 <h4>payment method</h4>
                                 <p>Pay on Delivery (Cash/Card). Cash on delivery (COD) available. </p>
-                                {{-- <p>Pay on Delivery (Cash/Card). Cash on delivery (COD) available. Card/Net banking acceptance subject to device availability.</p> --}}
-                            </div>
+                                <p>Pay on Delivery (Cash/Card). Cash on delivery (COD) available. Card/Net banking acceptance subject to device availability.</p>
+                            </div> --}}
 
                             {{-- <div class="col-md-12">
                                 <div class="delivery-sec">
